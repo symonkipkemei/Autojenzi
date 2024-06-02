@@ -138,7 +138,7 @@ namespace Autojenzi.src.Addin.Services
         }
 
 
-        public void BuildBlocks(bool firstCourse)
+        public void BuildACourse(bool firstCourse)
         {
             HorizontalJoint.Number += 1;
 
@@ -223,7 +223,7 @@ namespace Autojenzi.src.Addin.Services
             WallHeight = wallHeight;
         }
 
-        public void Buildcourses()
+        public void BuildCourses()
         {
 
             // insert DPC

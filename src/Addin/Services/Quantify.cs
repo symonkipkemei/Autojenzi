@@ -51,14 +51,14 @@ namespace Autojenzi.src.Addin.Services
             Course secondCourse = new Course(fullBlock, toothBlock, stackBlock, verticalJoint, horizontalJoint, WallLength, "Second Course");
 
             //Build Blocks ( Construct blocks and joints by placing one by one to build a course)
-            firstCourse.BuildBlocks(true);
-            secondCourse.BuildBlocks(false);
+            firstCourse.BuildACourse(true);
+            secondCourse.BuildACourse(false);
 
 
-            AbstractWall abstractWall = new AbstractWall(firstCourse, secondCourse, hoopIronStrip, dpcStrip,WallHeight);
+            WallAbstract wallAbstract = new WallAbstract(firstCourse, secondCourse, hoopIronStrip, dpcStrip,WallHeight);
 
             // Construct a wall by placing courses,hoopiron and dpc to build an abstract wall
-            abstractWall.Buildcourses();
+            wallAbstract.BuildCourses();
 
 
             // Abstract data//
