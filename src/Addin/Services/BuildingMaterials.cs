@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace Autojenzi.src.Addin.Services
     {
         // Descriptive Properties
         public string Name { get; set; }
-        public string Unit { get; set; }
+        public string WeightUnit { get; set; }
+        public string NumberUnit { get; set; }
         public int Quantity { get; set; }
         public double Rate { get; set; }
 
@@ -20,10 +22,11 @@ namespace Autojenzi.src.Addin.Services
 
         internal Stone(string name = "Machine Cut Stone",
                       string unit = "Pieces",
+                      string weightUnit = "tn",
                       double rate = 50,
                       double density = 0.001)
         {
-            Name = name; Unit = unit; Rate = rate; Density = density;
+            Name = name; WeightUnit = weightUnit; NumberUnit = unit; Rate = rate; Density = density;
         }
     }
 
@@ -148,22 +151,22 @@ namespace Autojenzi.src.Addin.Services
 
         public string Name { get; set; }
         public string Unit { get; set; }
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         public double Rate { get; set; }
 
 
         // Dimensional properties
-        public double Width { get; set; }
-        public double Length { get; set; }
+        public double UnitWidth { get; set; }
+        public double UnitLength { get; set; }
+        public double UnitArea { get { return UnitWidth * UnitLength; } }
 
+        public double sectionalArea {  get; set; }
 
-        internal DampProofCourse()
+        public double rolls { get { return Math.Round(sectionalArea/UnitArea); } }
+
+        internal DampProofCourse(string name = "Damp Proof Course (DPC)", string unit = "Rolls", double rate = 2200, double unitWidth = 1, double unitLength = 7)
         {
-            Name = "Damp Proof Course (DPC)";
-            Unit = "Rolls";
-            Rate = 2200;
-            Width = 1000;// 1000mm (1m)
-            Length = 7000; // 7000mm (7m)
+            Name = name; Unit = unit; Rate = rate; UnitWidth = unitWidth; UnitLength = unitLength;
         }
 
 

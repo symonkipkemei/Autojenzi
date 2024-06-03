@@ -89,7 +89,7 @@ namespace Autojenzi.src.Addin.Services
     }
 
 
-    internal class Block
+    internal class Block: Stone
     {
         // Dimensional properties
         public double Width { get; set; }
@@ -203,7 +203,7 @@ namespace Autojenzi.src.Addin.Services
 
 
 
-    internal class AbstractWall
+    internal class WallAbstract
     {
         public Course FirstCourse { get; set; }
         public Course SecondCourse { get; set; }
@@ -212,7 +212,7 @@ namespace Autojenzi.src.Addin.Services
  
         public double WallHeight { get; set; }
 
-        internal AbstractWall(Course firstCourse, Course secondCourse, HoopIronStrip hoopIronStrip, DpcStrip dpcStrip, double wallHeight)
+        internal WallAbstract(Course firstCourse, Course secondCourse, HoopIronStrip hoopIronStrip, DpcStrip dpcStrip, double wallHeight)
         {
 
             // store objects into abstract wall properties
