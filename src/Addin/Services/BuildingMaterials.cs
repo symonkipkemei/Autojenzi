@@ -7,176 +7,87 @@ using System.Threading.Tasks;
 
 namespace Autojenzi.src.Addin.Services
 {
-    internal class Stone
+    public class BuildingMaterial
     {
-        // Descriptive Properties
-        public string Name { get; set; }
-        public string WeightUnit { get; set; }
-        public string NumberUnit { get; set; }
-        public int Quantity { get; set; }
-        public double Rate { get; set; }
+        //Descriptive properties 
+        public string Type { get; set; }
+        public string Name { get; set; } //constant
+        public double Rate { get; set; } //constant
+        public string Unit { get; set; } //constant
+        public double Quantity { get; set; } // As per the unit of measure //dynamic
+        public double Amount { get { return Quantity * Rate; } } //dynamic
 
-        public double Density { get; set; }
+        // Quantitative properties
 
-        public double Amount { get { return Quantity * Rate; } }
+        public double Density { get; set; } //constant
+        public double UnitVolume { get; set; } //dynamic
+        public double UnitWeight { get; set; } //dynamic
 
-        internal Stone(string name = "Machine Cut Stone",
-                      string unit = "Pieces",
-                      string weightUnit = "tn",
-                      double rate = 50,
-                      double density = 0.001)
-        {
-            Name = name; WeightUnit = weightUnit; NumberUnit = unit; Rate = rate; Density = density;
-        }
+        public double TotalVolume { get; set; } //dynamic
+        public double TotalWeight { get { return TotalVolume * Density; } } //dynamic
+
     }
 
-
-    internal class Sand
+    internal class Block : BuildingMaterial
     {
-        // Descriptive Properties
-        public string Name { get; set; }
-        public string Unit { get; set; }
-        public int Quantity { get; set; }
-        public double Rate { get; set; }
-        public double Density { get; set; }
-
         // Dimensional properties
-        public double Volume { get; set; }
+        public double UnitWidth { get; set; } //constant
+        public double UnitHeight { get; set; } //constant
+        public double UnitLength { get; set; } //Constant
+        public double UnitVolume { get { return UnitWidth * UnitHeight * UnitLength; } }
 
 
-        // Read only Properties
-        public double Amount { get { return Quantity * Rate; } }
-        public double Weight { get { return Volume * Density; } } //in grams
+        public double StackBlockNo {  get; set; }
+        public double ToothBlockNo { get; set; }
+        public double FullBlockNo { get; set; }
+        public double JointThickness {  get; set; }
 
-        internal Sand(string name = "River Sand",
-                      string unit = "Kilograms (kg)",
-                      double rate = 300,
-                      double density = 0.001602) //g/mm3 ( 1602kg/m3)
-        {
-            Name = name; Unit = unit; Rate = rate; Density = density;
-        }
+        public double TotalNumber { get { return StackBlockNo + ToothBlockNo + FullBlockNo; } }
+        public double TotalVolume { get { return TotalNumber * UnitVolume; } }
     }
 
-
-    internal class Cement
+    internal class Cement: BuildingMaterial
     {
-        // Descriptive Properties
-        public string Name { get; set; }
-        public string Unit { get; set; }
-        public double Rate { get; set; }
-        public double Density { get; set; }
-
-        public double BagQuantity { get; set; } //How many Kgs in one bag of cement
-
-
-        // Dimensional properties
-        public double Volume { get; set; } //in M3
-
-
-        // Read Only Properties
-        public double Amount { get { return Quantity * Rate; } }
-        public double Weight { get { return Volume * Density; } }
-
-        public double Quantity 
+        public int BagsNo 
         { 
             get {
-                double aproxBags = (Volume * Density) / BagQuantity;
+                double aproxBags = TotalWeight / UnitWeight;
                 int EstimateBags = (int)Math.Round(aproxBags);
                 return EstimateBags;
                 } 
-        } //No of bags required
+        } 
 
-        internal Cement(string name = "Bamburi Cement",
-                        string unit = "Kilograms (Kg)",
-                        double rate = 605,
-                        double density = 1440, // kg/m3
-                        double bagQuantity = 50)
-        {
-            Name = name; Unit = unit; Rate = rate; Density = density; BagQuantity = bagQuantity;
-  
-        }
-
-       
     }
 
 
-    internal class HoopIron
+    internal class HoopIron: BuildingMaterial
     {
-        // Descriptive Properties
-
-        public string UnitName { get; set; }
-        public string UnitMeasure { get; set; }
-        public double UnitWeight { get; set; }
-        public double UnitLength { get; set; }
-        public double UnitRate { get; set; }
-        public double UnitGuage { get; set; }
-        public double UnitDensity { get; set; }
-        // Dimensional Properties
-
-        public double InputLength { get; set; }
-
-        //Read Only Properties
-
-        public double OutputWeight { get { return (InputLength * UnitWeight) / UnitLength; }} // in Kg
+        public double UnitLength { get; set; } //Length of a roll
+        public double Guage { get; set; }
+        public double TotalLength { get; set; } 
+        public double TotalWeight { get { return (TotalLength * UnitWeight) / UnitLength; }} // in Kg
 
         public double Rolls 
         { get 
             {
-                double NoRolls = InputLength / UnitLength;
+                double NoRolls = TotalLength / UnitLength;
                 int Rolls = (int)Math.Round(NoRolls);
                 return Rolls; 
             } 
         }
-
-        public double Amount { get { return Rolls * UnitRate; } }
-
-        //Construtor
-        internal HoopIron
-            (
-            double length = 20, // 20m ( In Meters)
-            string name= "Hoop Iron (16 Guage)",
-            string unit = "Rolls",
-            double rate = 3500,
-            double weight = 20000,//20kg (In Kg)
-            double guage = 16)
-        {
-            UnitLength = length; UnitName = name; UnitMeasure = unit; UnitRate = rate; UnitGuage = guage; UnitWeight = weight;
-        }
     }
 
 
-    internal class DampProofCourse
+    internal class DampProofCourse:BuildingMaterial
     {
-        // Descriptive Properties
 
-        public string Name { get; set; }
-        public string Unit { get; set; }
-        public double Quantity { get; set; }
-        public double Rate { get; set; }
-
-
-        // Dimensional properties
         public double UnitWidth { get; set; }
         public double UnitLength { get; set; }
         public double UnitArea { get { return UnitWidth * UnitLength; } }
-
-        public double sectionalArea {  get; set; }
-
-        public double rolls { get { return Math.Round(sectionalArea/UnitArea); } }
-
-        internal DampProofCourse(string name = "Damp Proof Course (DPC)", string unit = "Rolls", double rate = 2200, double unitWidth = 1, double unitLength = 7)
-        {
-            Name = name; Unit = unit; Rate = rate; UnitWidth = unitWidth; UnitLength = unitLength;
-        }
-
-
-        public double Amount()
-        {
-            return Quantity * Rate;
-        }
+        public double TotalArea {  get; set; }
+        public double rolls { get { return Math.Round(TotalArea / UnitArea); } }
 
     }
-
 
 
 }

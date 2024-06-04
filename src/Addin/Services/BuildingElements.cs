@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Animation;
 
 namespace Autojenzi.src.Addin.Services
 {
-    internal class DpcStrip : DampProofCourse
+    internal class DpcStrip 
     {
         // Dimensional Properties
         public double SectionWidth { get; set; }
@@ -17,6 +19,8 @@ namespace Autojenzi.src.Addin.Services
 
         public double SectionalArea { get {  return SectionLength * SectionWidth; } }
         public int Number { get; set; }
+
+        public double TotalArea { get { return SectionalArea * Number; } }
 
         internal DpcStrip(double WallWidth, double WallLength)
         {
@@ -26,11 +30,27 @@ namespace Autojenzi.src.Addin.Services
         }
     }
 
+    internal class BlockType
+    {
+        public double Length { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
 
-    internal class HoopIronStrip : HoopIron
+        public double Number { get; set; }
+
+        internal BlockType(double length, double height, double width)
+        {
+            Length = length;
+            Height = height;
+            Width = width;
+        }
+    }
+
+    internal class HoopIronStrip
     {
         public double StripLength { get; set; }
         public int Number { get; set; }
+        public double TotalLength { get {  return StripLength * Number; } }
 
         internal HoopIronStrip(double WallLength)
         {
@@ -89,29 +109,14 @@ namespace Autojenzi.src.Addin.Services
     }
 
 
-    internal class Block: Stone
-    {
-        // Dimensional properties
-        public double Width { get; set; }
-        public double Height { get; set; }
-        public double Length { get; set; }
-        public int Number {  get; set; }
 
-        public double Volume { get { return Width * Height * Length; } }
-
-        public Block(double width,double length , double height)
-        {
-            Width = width;  Length = length; Height = height;
-        }
-
-    }
 
     internal class Course
     {
         // Material Properties/Objects
-        public Block FullBlock { get; set; }
-        public Block ToothBlock { get; set; }
-        public Block StackBlock { get; set; }
+        public BlockType FullBlock { get; set; }
+        public BlockType ToothBlock { get; set; }
+        public BlockType StackBlock { get; set; }
         public Joint VerticalJoint { get; set; }
         public Joint HorizontalJoint { get; set; }
 
@@ -131,7 +136,7 @@ namespace Autojenzi.src.Addin.Services
         public double HorizontalJointNo { get { return HorizontalJoint.Number * Number; } }
         public double VerticalJointNo { get { return VerticalJoint.Number * Number; } }
 
-        public Course(Block fullblock, Block toothBlock, Block stackBlock, Joint veriticalJoint, Joint horizontalJoint, double wallLength, string name)
+        public Course(BlockType fullblock, BlockType toothBlock, BlockType stackBlock, Joint veriticalJoint, Joint horizontalJoint, double wallLength, string name)
         {
             FullBlock = fullblock; ToothBlock = toothBlock; StackBlock = stackBlock; VerticalJoint = veriticalJoint;
             HorizontalJoint = horizontalJoint; CourseLength = wallLength; TrackLength = wallLength; CourseName = name;

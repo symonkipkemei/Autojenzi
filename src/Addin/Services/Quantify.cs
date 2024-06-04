@@ -25,23 +25,29 @@ namespace Autojenzi.src.Addin.Services
         double BlockLength { get; set; }
         double JointThickness { get; set; }
 
-        public Quantify(double wallLength, double wallHeight, double wallWidth, double blockHeight, double blockLength, double jointThickness)
+
+
+        public Quantify(double wallLength, double wallHeight, double wallWidth)
         {
             WallLength = wallLength;
             WallHeight = wallHeight;
             WallWidth = wallWidth;
-            BlockHeight = blockHeight;
-            BlockLength = blockLength;
-            JointThickness = jointThickness;
         }
 
         public void Wall()
         {
-            Block fullBlock = new Block(BlockWidth, BlockLength, BlockHeight);
-            Block toothBlock = new Block(BlockWidth, BlockLength, BlockHeight);
-            Block stackBlock = new Block(BlockWidth, BlockLength, BlockHeight);
+            Block stone = MaterialLoader.FindBuildingMaterial("Block") as Block;
 
-            Joint verticalJoint = new Joint(JointThickness,BlockHeight,BlockWidth);
+            double blockHeight = stone.UnitHeight; 
+            double blockLength = stone.UnitWidth; 
+            double blockWidth = stone.UnitWidth;
+            double jointThickness = stone.JointThickness;
+
+            BlockType fullBlock = new BlockType(BlockLength, BlockHeight,BlockWidth);
+            BlockType stackBlock = new BlockType(BlockLength/(3/4), BlockHeight, BlockWidth);
+            BlockType toothBlock = new BlockType(BlockLength/(1/2), BlockHeight, BlockWidth);
+        
+            Joint verticalJoint = new Joint(JointThickness,BlockHeight,BlockWidth); 
             Joint horizontalJoint = new Joint(JointThickness,WallLength,BlockWidth);
 
             HoopIronStrip hoopIronStrip = new HoopIronStrip(WallLength);
@@ -60,18 +66,14 @@ namespace Autojenzi.src.Addin.Services
             // Construct a wall by placing courses,hoopiron and dpc to build an abstract wall
             wallAbstract.BuildCourses();
 
-
-            // Abstract data//
-
-            //No of courses (First and second course)
-            double firstCourseNo = firstCourse.Number;
-            double secondCourseNo = secondCourse.Number;
-            double courses = firstCourseNo + secondCourseNo;
-
-            //No of blocks (full,tooth,stack)
+            //blocks (full,tooth,stack)
             double fullBlocksNo = firstCourse.FullBlockNo + secondCourse.FullBlockNo;
             double stackBlocksNo = firstCourse.StackBlockNo + secondCourse.StackBlockNo;
             double toothBlockNo = firstCourse.ToothBlockNo + secondCourse.ToothBlockNo;
+          
+            stone.FullBlockNo = fullBlocksNo;
+            stone.ToothBlockNo = toothBlockNo;
+            stone.StackBlockNo  = stackBlocksNo;
 
             // Volume of joints (Horizontal + Vertical)
 
@@ -79,44 +81,29 @@ namespace Autojenzi.src.Addin.Services
             double verticalJointVolume = (firstCourse.VerticalJointNo +  secondCourse.VerticalJointNo) * verticalJoint.Volume;
             double totalJointVolume = verticalJointVolume * horizontalJointVolume;
 
+            //Mortar
+            Mortar mortar = new Mortar();
+            mortar.MortarVolume = totalJointVolume;
+            double sandVolume = mortar.SandVolume;
+            double cementVolume = mortar.CementVolume;
+
+            //Cement
+            Cement cement = MaterialLoader.FindBuildingMaterial("cement") as Cement;
+            cement.TotalVolume = cementVolume;
+
+            //Sand
+            BuildingMaterial sand = MaterialLoader.FindBuildingMaterial("sand");
+            sand.TotalVolume = sandVolume;
+
             // Area of DPC Strip
-            double dpcStripArea = dpcStrip.SectionalArea * dpcStrip.Number;
+            DampProofCourse dpc = MaterialLoader.FindBuildingMaterial("dpc") as DampProofCourse;
+            dpc.TotalArea = dpcStrip.TotalArea;
+
 
             // Length of  Hoop Iron strip
-            double hoopIronStripLength = hoopIronStrip.StripLength * hoopIronStrip.Number;
+            HoopIron hoopIron = MaterialLoader.FindBuildingMaterial("hoopIron") as HoopIron;
+            hoopIron.TotalLength = hoopIronStrip.StripLength;
 
-            // Format data into a readable table
-            Console.WriteLine("Abstracted Wall Quantities:");
-            Console.WriteLine("---------------------------");
-            Console.WriteLine($"Number of Courses: {courses}");
-            Console.WriteLine($" - First Courses: {firstCourseNo}");
-            Console.WriteLine($" - Second Courses: {secondCourseNo}");
-            Console.WriteLine();
-            Console.WriteLine("Number of Blocks:");
-            Console.WriteLine($" - Full Blocks: {fullBlocksNo}");
-            Console.WriteLine($" - Tooth Blocks: {toothBlockNo}");
-            Console.WriteLine($" - Stack Blocks: {stackBlocksNo}");
-            Console.WriteLine();
-            Console.WriteLine("Volume of Joints:");
-            Console.WriteLine($" - Horizontal Joint Volume: {horizontalJointVolume}");
-            Console.WriteLine($" - Vertical Joint Volume: {verticalJointVolume}");
-            Console.WriteLine($" - Total Joint Volume: {totalJointVolume}");
-            Console.WriteLine();
-            Console.WriteLine("DPC Strip:");
-            Console.WriteLine($" - DPC Strip Area: {dpcStripArea}");
-            Console.WriteLine();
-            Console.WriteLine("Hoop Iron Strip:");
-            Console.WriteLine($" - Hoop Iron Strip Length: {hoopIronStripLength}");
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            // Example usage
-            Quantify quantify = new Quantify(10.0, 3.0, 0.2, 0.2, 0.4, 0.01);
-            quantify.Wall();
         }
     }
 }
