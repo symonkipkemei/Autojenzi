@@ -10,7 +10,8 @@ namespace Autojenzi.src.Addin.Services
     public class BuildingMaterial
     {
         //Descriptive properties 
-        public string Type { get; set; }
+        public string Class { get; set; }
+        public string ID { get; set; }
         public string Name { get; set; } //constant
         public double Rate { get; set; } //constant
         public string Unit { get; set; } //constant
