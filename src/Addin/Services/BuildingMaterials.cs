@@ -67,9 +67,9 @@ namespace Autojenzi.src.Addin.Services
             TotalVolume = UnitVolume * TotalNumber;
         }
 
-        public void CalculateBlockNo(double StackBlockNo, double ToothBlockNo, double FullBlockNo)
+        public double CalculateBlockNo(double StackBlockNo, double ToothBlockNo, double FullBlockNo)
         {
-            TotalNumber = StackBlockNo + ToothBlockNo + FullBlockNo;
+            return StackBlockNo + ToothBlockNo + FullBlockNo;
         }
 
 
