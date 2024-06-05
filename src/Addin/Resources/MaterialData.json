@@ -1,155 +1,147 @@
 ﻿{
-  "Materials": {
-    "Block": [
-      {
-        "Class": "Block",
-        "ID": "MachineCutStone",
-        "Name": "Machine Cut Stone",
-        "Rate": 30,
-        "Unit": "Pieces",
-        "Density": null,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 0.4,
-        "UnitWidth": 0.2,
-        "UnitHeight": 0.2,
-        "JointThickness": 0.03
-      },
-      {
-        "Class": "Block",
-        "ID": "ClayBricks",
-        "Name": "Clay Bricks",
-        "Rate": null,
-        "Unit": "Pieces",
-        "Density": 1920,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 0.225,
-        "UnitWidth": 0.75,
-        "UnitHeight": 0.11,
-        "JointThickness": 0.01
-      },
-      {
-        "Class": "Block",
-        "ID": "QuarryStone",
-        "Name": "Quarry Stone",
-        "Rate": null,
-        "Unit": "Pieces",
-        "Density": null,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 0.4,
-        "UnitWidth": 0.2,
-        "UnitHeight": 0.2,
-        "JointThickness": 0.03
-      },
-      {
-        "Class": "Block",
-        "ID": "CMU",
-        "Name": "Concrete Masonry Unit",
-        "Rate": null,
-        "Unit": "Pieces",
-        "Density": 2370,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 0.4,
-        "UnitWidth": 0.2,
-        "UnitHeight": 0.2,
-        "JointThickness": 0.03
-      },
-      {
-        "Class": "Block",
-        "ID": "SoilBlock",
-        "Name": "Makiga Soil Block",
-        "Rate": null,
-        "Unit": "Pieces",
-        "Density": 1520,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 0.254,
-        "UnitWidth": 0.152,
-        "UnitHeight": 0.101,
-        "JointThickness": 0
-      },
-      {
-        "Class": "Block",
-        "ID": "InterlockingBlocks",
-        "Name": "Interlocking Concrete Blocks",
-        "Rate": null,
-        "Unit": "Pieces",
-        "Density": null,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 0.4,
-        "UnitWidth": 0.2,
-        "UnitHeight": 0.2,
-        "JointThickness": 0.03
-      },
-      {
-        "Class": "Block",
-        "ID": "HollowBlocks",
-        "Name": "Hollow Concrete Blocks",
-        "Rate": null,
-        "Unit": "Pieces",
-        "Density": null,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 0.4,
-        "UnitWidth": 0.2,
-        "UnitHeight": 0.2,
-        "JointThickness": 0.03
-      }
-    ],
-    "Cement": [
-      {
-        "Class": "Cement",
-        "ID": "Cement",
-        "Name": "Cement",
-        "Rate": null,
-        "Unit": "50kg Bags",
-        "Density": 1440,
-        "UnitVolume": 0.034722,
-        "UnitWeight": 50
-      }
-    ],
-    "BuildingMaterial": [
-      {
-        "Class": "BuildingMaterial",
-        "ID": "RiverSand",
-        "Name": "River Sand",
-        "Rate": null,
-        "Unit": "Metric Ton",
-        "Density": 1.71,
-        "UnitVolume": 584.795,
-        "UnitWeight": 1000
-      }
-    ],
-    "hoopIron": [
-      {
-        "Class": "HoopIron",
-        "ID": "HoopIron",
-        "Name": "Hoop Iron",
-        "Rate": 3500,
-        "Unit": "Rolls",
-        "Density": null,
-        "UnitVolume": null,
-        "UnitWeight": 20,
-        "UnitLength": 20
-      }
-    ],
-    "DampProofCourse": [
-      {
-        "Class": "DampProofCourse",
-        "ID": "DPC",
-        "Name": "Damp Proof Course",
-        "Rate": 3500,
-        "Unit": "Rolls",
-        "Density": null,
-        "UnitVolume": null,
-        "UnitWeight": null,
-        "UnitLength": 1,
-        "UnitWidth": 7
-      }
-    ]
-  }
+  "Materials": [
+    {
+      "Category": "Block",
+      "ID": "MachineCutStone",
+      "Name": "Machine Cut Stone",
+      "Rate": 30,
+      "Unit": "Pieces",
+      "Density": null,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 0.4,
+      "UnitWidth": 0.2,
+      "UnitHeight": 0.2,
+      "JointThickness": 0.03
+
+    },
+    {
+      "Category": "Block",
+      "ID": "ClayBricks",
+      "Name": "Clay Bricks",
+      "Rate": null,
+      "Unit": "Pieces",
+      "Density": 1920,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 0.225,
+      "UnitWidth": 0.75,
+      "UnitHeight": 0.11,
+      "JointThickness": 0.01
+    },
+    {
+      "Category": "Block",
+      "ID": "QuarryStone",
+      "Name": "Quarry Stone",
+      "Rate": null,
+      "Unit": "Pieces",
+      "Density": null,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 0.4,
+      "UnitWidth": 0.2,
+      "UnitHeight": 0.2,
+      "JointThickness": 0.03
+    },
+    {
+      "Category":"Block",
+      "ID": "CMU",
+      "Name": "Concrete Masonry Unit",
+      "Rate": null,
+      "Unit": "Pieces",
+      "Density": 2370,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 0.4,
+      "UnitWidth": 0.2,
+      "UnitHeight": 0.2,
+      "JointThickness": 0.03
+    },
+    {
+      "Category": "Block",
+      "ID": "SoilBlock",
+      "Name": "Makiga Soil Block",
+      "Rate": null,
+      "Unit": "Pieces",
+      "Density": 1520,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 0.254,
+      "UnitWidth": 0.152,
+      "UnitHeight": 0.101,
+      "JointThickness": 0
+    },
+    {
+      "Category": "Block",
+      "ID": "InterlockingBlocks",
+      "Name": "Interlocking Concrete Blocks",
+      "Rate": null,
+      "Unit": "Pieces",
+      "Density": null,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 0.4,
+      "UnitWidth": 0.2,
+      "UnitHeight": 0.2,
+      "JointThickness": 0.03
+    },
+    {
+      "Category": "Block",
+      "ID": "HollowBlocks",
+      "Name": "Hollow Concrete Blocks",
+      "Rate": null,
+      "Unit": "Pieces",
+      "Density": null,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 0.4,
+      "UnitWidth": 0.2,
+      "UnitHeight": 0.2,
+      "JointThickness": 0.03
+    },
+    {
+      "Category": "Cement",
+      "ID": "Cement",
+      "Name": "Cement",
+      "Rate": null,
+      "Unit": "50kg Bags",
+      "Density": 1440,
+      "UnitVolume": 0.034722,
+      "UnitWeight": 50
+    },
+    {
+      "Category": "Aggregate",
+      "ID": "RiverSand",
+      "Name": "River Sand",
+      "Rate": null,
+      "Unit": "Metric Ton",
+      "Density": 1.71,
+      "UnitVolume": 584.795,
+      "UnitWeight": 1000
+    },
+    {
+      "Category": "Metal",
+      "ID": "HoopIron",
+      "Name": "Hoop Iron",
+      "Rate": 3500,
+      "Unit": "Rolls",
+      "Density": null,
+      "UnitVolume": null,
+      "UnitWeight": 20,
+      "UnitLength": 20,
+      "Thickness": null
+    },
+    {
+      "Category": "Sheet",
+      "ID": "DPC",
+      "Name": "Damp Proof Course",
+      "Rate": 3500,
+      "Unit": "Rolls",
+      "Density": null,
+      "UnitVolume": null,
+      "UnitWeight": null,
+      "UnitLength": 1,
+      "UnitWidth": 7
+    }
+  ]
 }

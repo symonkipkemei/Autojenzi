@@ -10,7 +10,7 @@ namespace Autojenzi.src.Addin.Services
     public class BuildingMaterial
     {
         //Descriptive properties 
-        public string Class { get; set; }
+        public string Category { get; set; }
         public string ID { get; set; }
         public string Name { get; set; } //constant
         public double Rate { get; set; } //constant
@@ -23,72 +23,63 @@ namespace Autojenzi.src.Addin.Services
         public double Density { get; set; } //constant
         public double UnitVolume { get; set; } //dynamic
         public double UnitWeight { get; set; } //dynamic
+        public double UnitArea { get; set; } //dynamic
+
 
         public double TotalVolume { get; set; } //dynamic
         public double TotalWeight { get { return TotalVolume * Density; } } //dynamic
+        public double TotalArea { get ; set; }
+        public double TotalNumber { get; set; }
 
-    }
 
-    internal class Block : BuildingMaterial
-    {
-        // Dimensional properties
+
+        // Dminsional properties
         public double UnitWidth { get; set; } //constant
         public double UnitHeight { get; set; } //constant
         public double UnitLength { get; set; } //Constant
-        public double UnitVolume { get { return UnitWidth * UnitHeight * UnitLength; } }
+        public double Thickness { get; set; }
+        public double TotalLength { get; set; }
 
 
-        public double StackBlockNo {  get; set; }
-        public double ToothBlockNo { get; set; }
-        public double FullBlockNo { get; set; }
-        public double JointThickness {  get; set; }
 
-        public double TotalNumber { get { return StackBlockNo + ToothBlockNo + FullBlockNo; } }
-        public double TotalVolume { get { return TotalNumber * UnitVolume; } }
-    }
+        public double CalculateBagsNo()
+        {
+            double aproxBags = TotalWeight / UnitWeight;
+            int EstimateBags = (int)Math.Round(aproxBags);
+            return EstimateBags;
+        }
 
-    internal class Cement: BuildingMaterial
-    {
-        public int BagsNo 
+        public double CalculateRolls()
+        {
+            double NoRolls = TotalLength / UnitLength;
+            int Rolls = (int)Math.Round(NoRolls);
+            return Rolls;
+        }
+
+        public double CalculateSheets()
+        {
+            return Math.Round(TotalArea / UnitArea);
+        }
+
+        public void CalculateBlockVolume() 
         { 
-            get {
-                double aproxBags = TotalWeight / UnitWeight;
-                int EstimateBags = (int)Math.Round(aproxBags);
-                return EstimateBags;
-                } 
-        } 
+            UnitVolume = UnitWidth * UnitHeight * UnitLength;
+            TotalVolume = UnitVolume * TotalNumber;
+        }
+
+        public void CalculateBlockNo(double StackBlockNo, double ToothBlockNo, double FullBlockNo)
+        {
+            TotalNumber = StackBlockNo + ToothBlockNo + FullBlockNo;
+        }
+
 
     }
 
-
+  
     internal class HoopIron: BuildingMaterial
     {
-        public double UnitLength { get; set; } //Length of a roll
-        public double Guage { get; set; }
-        public double TotalLength { get; set; } 
+
         public double TotalWeight { get { return (TotalLength * UnitWeight) / UnitLength; }} // in Kg
 
-        public double Rolls 
-        { get 
-            {
-                double NoRolls = TotalLength / UnitLength;
-                int Rolls = (int)Math.Round(NoRolls);
-                return Rolls; 
-            } 
-        }
     }
-
-
-    internal class DampProofCourse:BuildingMaterial
-    {
-
-        public double UnitWidth { get; set; }
-        public double UnitLength { get; set; }
-        public double UnitArea { get { return UnitWidth * UnitLength; } }
-        public double TotalArea {  get; set; }
-        public double rolls { get { return Math.Round(TotalArea / UnitArea); } }
-
-    }
-
-
 }
