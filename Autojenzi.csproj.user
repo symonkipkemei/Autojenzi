@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="src\UI\Greetings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="src\UI\Materials.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="src\UI\Greetings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="src\UI\Materials.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

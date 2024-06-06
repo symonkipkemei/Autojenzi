@@ -28,7 +28,7 @@ namespace Autojenzi.src.Addin.Services
 
         public double TotalVolume { get; set; } //dynamic
         public double TotalWeight { get { return TotalVolume * Density; } } //dynamic
-        public double TotalArea { get ; set; }
+        public double TotalArea { get; set; }
         public double TotalNumber { get; set; }
 
 
@@ -61,25 +61,12 @@ namespace Autojenzi.src.Addin.Services
             return Math.Round(TotalArea / UnitArea);
         }
 
-        public void CalculateBlockVolume() 
-        { 
+        public void CalculateBlockVolume()
+        {
             UnitVolume = UnitWidth * UnitHeight * UnitLength;
             TotalVolume = UnitVolume * TotalNumber;
         }
 
-        public double CalculateBlockNo(double StackBlockNo, double ToothBlockNo, double FullBlockNo)
-        {
-            return StackBlockNo + ToothBlockNo + FullBlockNo;
-        }
-
-
-    }
-
-  
-    internal class HoopIron: BuildingMaterial
-    {
-
-        public double TotalWeight { get { return (TotalLength * UnitWeight) / UnitLength; }} // in Kg
-
     }
 }
+

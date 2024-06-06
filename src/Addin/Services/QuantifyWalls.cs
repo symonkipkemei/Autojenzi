@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Autojenzi.src.Addin.Services
 {
 
-    internal class Quantify
+    internal class QuantifyWalls
     {
 
         //Wall Dimensional propeties (Abstracted from revit)
@@ -18,21 +18,36 @@ namespace Autojenzi.src.Addin.Services
         double WallHeight { get; set; }
         double WallWidth { get; set; }
 
-        public Quantify(double wallLength, double wallHeight, double wallWidth)
+
+        public BuildingMaterial Stone { get; private set; }
+        public BuildingMaterial Cement { get; private set; }
+        public BuildingMaterial Sand { get; private set; }
+        public BuildingMaterial Dpc { get; private set; }
+        public BuildingMaterial HoopIron { get; private set; }
+
+    
+
+        public QuantifyWalls(double wallLength, double wallHeight, double wallWidth)
         {
             WallLength = wallLength;
             WallHeight = wallHeight;
             WallWidth = wallWidth;
+
+            // Initialize building materials
+            Stone = MaterialLoader.FindBuildingMaterial("MachineCutStone");
+            Cement = MaterialLoader.FindBuildingMaterial("Cement");
+            Sand = MaterialLoader.FindBuildingMaterial("RiverSand");
+            Dpc = MaterialLoader.FindBuildingMaterial("DPC");
+            HoopIron = MaterialLoader.FindBuildingMaterial("HoopIron");
+
         }
 
-        public void Wall()
+        public void BlockWall()
         {
-            BuildingMaterial stone = MaterialLoader.FindBuildingMaterial("MachineCutStone");
-
-            double blockHeight = stone.UnitHeight; 
-            double blockLength = stone.UnitWidth; 
-            double blockWidth = stone.UnitWidth;
-            double jointThickness = stone.Thickness;
+            double blockHeight = Stone.UnitHeight; 
+            double blockLength = Stone.UnitWidth; 
+            double blockWidth = Stone.UnitWidth;
+            double jointThickness = Stone.Thickness;
 
             BlockType fullBlock = new BlockType(blockLength, blockHeight, blockWidth);
             BlockType stackBlock = new BlockType(blockLength / (3/4), blockHeight, blockWidth);
@@ -51,24 +66,21 @@ namespace Autojenzi.src.Addin.Services
             firstCourse.BuildACourse(true);
             secondCourse.BuildACourse(false);
 
-
             WallAbstract wallAbstract = new WallAbstract(firstCourse, secondCourse, hoopIronStrip, dpcStrip,WallHeight);
-
             // Construct a wall by placing courses,hoopiron and dpc to build an abstract wall
             wallAbstract.BuildCourses();
-
+            double stripNumber = wallAbstract.HoopIronStrip.Number;
+            double stripLength = hoopIronStrip.StripLength;
+            double totalArea = wallAbstract.HoopIronStrip.TotalLength;
             //blocks (full,tooth,stack)
             double fullBlocksNo = firstCourse.FullBlockNo + secondCourse.FullBlockNo;
             double stackBlocksNo = firstCourse.StackBlockNo + secondCourse.StackBlockNo;
             double toothBlockNo = firstCourse.ToothBlockNo + secondCourse.ToothBlockNo;
 
-            stone.CalculateBlockNo(stackBlocksNo, toothBlockNo, fullBlocksNo);
-          
             // Volume of joints (Horizontal + Vertical)
-
             double horizontalJointVolume = (firstCourse.HorizontalJointNo + secondCourse.HorizontalJointNo) * horizontalJoint.Volume;
             double verticalJointVolume = (firstCourse.VerticalJointNo +  secondCourse.VerticalJointNo) * verticalJoint.Volume;
-            double totalJointVolume = verticalJointVolume * horizontalJointVolume;
+            double totalJointVolume = verticalJointVolume + horizontalJointVolume;
 
             //Mortar
             Mortar mortar = new Mortar();
@@ -76,22 +88,39 @@ namespace Autojenzi.src.Addin.Services
             double sandVolume = mortar.SandVolume;
             double cementVolume = mortar.CementVolume;
 
-            //Cement
-            BuildingMaterial cement = MaterialLoader.FindBuildingMaterial("Cement");
-            cement.TotalVolume = cementVolume;
+            //Material quantities
+            Stone.TotalNumber += fullBlocksNo + stackBlocksNo + toothBlockNo;
+            Cement.TotalVolume += cementVolume;
+            Sand.TotalVolume += sandVolume;
+            Dpc.TotalArea += wallAbstract.DpcStrip.TotalArea;
+            double hpvalue = HoopIron.TotalLength;
+            HoopIron.TotalLength += wallAbstract.HoopIronStrip.TotalLength;
+        }
 
-            //Sand
-            BuildingMaterial sand = MaterialLoader.FindBuildingMaterial("RiverSand");
-            sand.TotalVolume = sandVolume;
+        public void AssignQuantityAttribute()
+        {
+            Stone.Quantity = Stone.TotalNumber;
+            Cement.Quantity = Cement.CalculateBagsNo();
+            Sand.Quantity = Sand.TotalWeight;
+            Dpc.Quantity = Dpc.CalculateSheets();
+            HoopIron.Quantity = HoopIron.CalculateRolls();
+        }
+        public void ResetQuantities()
+        {
+            Stone.TotalNumber = 0;
+            Cement.TotalVolume = 0;
+            Sand.TotalVolume = 0;
+            Dpc.TotalArea = 0;
+            HoopIron.TotalLength = 0;
+        }
 
-            // Area of DPC Strip
-            BuildingMaterial dpc = MaterialLoader.FindBuildingMaterial("DPC");
-            dpc.TotalArea = dpcStrip.TotalArea;
-
-            // Length of  Hoop Iron strip
-            HoopIron hoopIron = MaterialLoader.FindBuildingMaterial("hoopIron") as HoopIron;
-            hoopIron.TotalLength = hoopIronStrip.StripLength;
-
+        public void StoreData()
+        {
+            Store.AbstractedMaterials.Add(Stone);
+            Store.AbstractedMaterials.Add(Cement);
+            Store.AbstractedMaterials.Add(Sand);
+            Store.AbstractedMaterials.Add(Dpc);
+            Store.AbstractedMaterials.Add(HoopIron);
         }
     }
 }

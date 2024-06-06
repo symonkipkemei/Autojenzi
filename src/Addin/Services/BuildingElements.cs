@@ -120,6 +120,7 @@ namespace Autojenzi.src.Addin.Services
         public Joint VerticalJoint { get; set; }
         public Joint HorizontalJoint { get; set; }
 
+
         //Descriptive Properties
         public double CourseLength { get; set; }
         public double CourseHeight { get { return FullBlock.Height + HorizontalJoint.Thickness; } }

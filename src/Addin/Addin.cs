@@ -28,6 +28,15 @@ namespace Autojenzi.src.Addin
             BitmapImage image = new BitmapImage(uri);
             button.LargeImage = image;
 
+
+            //Button data for SayHello button
+            PushButtonData data1 = new PushButtonData("SayHello", "SayHello", assembly, "Autojenzi.src.Addin.Commands.SayHello");
+            PushButton button1 = ribbonPanel.AddItem(data1) as PushButton;
+            button1.ToolTip = "Say hi to your users";
+            Uri uri1 = new Uri("pack://application:,,,/Autojenzi;src/Addin/Resources/snapme.png");
+            BitmapImage image1 = new BitmapImage(uri1);
+            button.LargeImage = image1;
+
         }
 
         public Result OnShutdown(UIControlledApplication application)

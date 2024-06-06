@@ -16,7 +16,7 @@ namespace Autojenzi.src.Addin.Commands
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
 
-    public class MultiWall: IExternalCommand
+    public class SayHello : IExternalCommand
     {
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -27,22 +27,8 @@ namespace Autojenzi.src.Addin.Commands
 
             try
             {
-                // Display a user interface with Options to select walls
-                double wallLength = 3;
-                double wallHeight = 3;
-                double wallThickness = 0.2;
-
-                QuantifyWalls walls = new QuantifyWalls(wallLength, wallHeight, wallThickness);
-
-                walls.BlockWall();
-                walls.AssignQuantityAttribute();
-                walls.StoreData();
-                
-
-                
-                Materials materialTable = new Materials(Store.AbstractedMaterials);
-                materialTable.ShowDialog();
-
+                Greetings salamu = new Greetings();
+                salamu.ShowDialog();
             }
 
             catch (Exception ex)

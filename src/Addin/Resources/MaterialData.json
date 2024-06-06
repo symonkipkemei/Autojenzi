@@ -12,7 +12,7 @@
       "UnitLength": 0.4,
       "UnitWidth": 0.2,
       "UnitHeight": 0.2,
-      "JointThickness": 0.03
+      "Thickness": 0.03
 
     },
     {
@@ -27,7 +27,7 @@
       "UnitLength": 0.225,
       "UnitWidth": 0.75,
       "UnitHeight": 0.11,
-      "JointThickness": 0.01
+      "Thickness": 0.01
     },
     {
       "Category": "Block",
@@ -41,7 +41,7 @@
       "UnitLength": 0.4,
       "UnitWidth": 0.2,
       "UnitHeight": 0.2,
-      "JointThickness": 0.03
+      "Thickness": 0.03
     },
     {
       "Category":"Block",
@@ -55,7 +55,7 @@
       "UnitLength": 0.4,
       "UnitWidth": 0.2,
       "UnitHeight": 0.2,
-      "JointThickness": 0.03
+      "Thickness": 0.03
     },
     {
       "Category": "Block",
@@ -69,7 +69,7 @@
       "UnitLength": 0.254,
       "UnitWidth": 0.152,
       "UnitHeight": 0.101,
-      "JointThickness": 0
+      "Thickness": 0
     },
     {
       "Category": "Block",
@@ -83,7 +83,7 @@
       "UnitLength": 0.4,
       "UnitWidth": 0.2,
       "UnitHeight": 0.2,
-      "JointThickness": 0.03
+      "Thickness": 0.03
     },
     {
       "Category": "Block",
@@ -97,7 +97,7 @@
       "UnitLength": 0.4,
       "UnitWidth": 0.2,
       "UnitHeight": 0.2,
-      "JointThickness": 0.03
+      "Thickness": 0.03
     },
     {
       "Category": "Cement",
