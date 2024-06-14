@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Autojenzi.src.Addin.Services
 {
@@ -14,9 +15,9 @@ namespace Autojenzi.src.Addin.Services
         public string ID { get; set; }
         public string Name { get; set; } //constant
         public double Rate { get; set; } //constant
-        public string Unit { get; set; } //constant
-        public double Quantity { get; set; } // As per the unit of measure //dynamic
-        public double Amount { get { return Quantity * Rate; } } //dynamic
+        public string UnitOfProduct { get; set; } //constant
+        public double ProductQuantity { get; set; } // As per the unit of measure //dynamic
+        public double Amount { get { return ProductQuantity * Rate; } } //dynamic
 
         // Quantitative properties
 
@@ -66,6 +67,21 @@ namespace Autojenzi.src.Addin.Services
             UnitVolume = UnitWidth * UnitHeight * UnitLength;
             TotalVolume = UnitVolume * TotalNumber;
         }
+
+    }
+
+
+    public class WallProperties
+    {
+        public string Properties { get; set; }
+        public string Unit { get; set; }
+        public double Value { get; set; }
+
+        public WallProperties(string properties, string unit, double value) 
+        {
+            Properties = properties; Unit = unit; Value = value;
+        }
+     
 
     }
 }

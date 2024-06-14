@@ -10,10 +10,15 @@ namespace Autojenzi.src.Addin
         static Store()
         {
             AbstractedMaterials = new ObservableCollection<BuildingMaterial>();
+            PropertiesList = new ObservableCollection<WallProperties>();
         }
 
         public static ObservableCollection<BuildingMaterial> AbstractedMaterials { get; set; }
+        public static ObservableCollection<WallProperties> PropertiesList { get; set; }
     }
 
 
+
 }
+
+

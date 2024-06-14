@@ -22,11 +22,11 @@ namespace Autojenzi.src.UI
     /// </summary>
     public partial class Materials : Window
     {
-
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<BuildingMaterial> MaterialItems {  get; set; }
-       
-        public Materials(ObservableCollection<BuildingMaterial> storeitems)
+
+        public ObservableCollection<WallProperties> WallProperties { get; set; }
+
+        public Materials(ObservableCollection<BuildingMaterial> storeitems, ObservableCollection<WallProperties> wallProperties)
         {
             InitializeComponent();
             if (storeitems == null)
@@ -37,6 +37,8 @@ namespace Autojenzi.src.UI
 
             DataContext = this;
             MaterialItems = storeitems;
+            WallProperties = wallProperties;
+
         }
     }
 }

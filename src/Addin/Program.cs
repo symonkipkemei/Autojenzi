@@ -24,8 +24,9 @@ namespace Autojenzi.src.Addin
             walls.BlockWall();
             walls.AssignQuantityAttribute();
             walls.StoreData();
+            walls.storeWallPropertes();
 
-            Materials materialTable = new Materials(Store.AbstractedMaterials);
+            Materials materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
 
             Application app = new Application();
             app.Run(materialTable);

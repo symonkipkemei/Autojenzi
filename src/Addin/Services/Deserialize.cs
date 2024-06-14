@@ -50,7 +50,7 @@ public static class MaterialLoader
         material.ID = materialJson.ID;
         material.Name = materialJson.Name;
         material.Rate = materialJson.Rate ?? 0;
-        material.Unit = materialJson.Unit;
+        material.UnitOfProduct = materialJson.Unit;
         material.Density = materialJson.Density ?? 0;
         material.UnitWeight = materialJson.UnitWeight ?? 0;
         material.UnitVolume = materialJson.UnitVolume ?? 0;

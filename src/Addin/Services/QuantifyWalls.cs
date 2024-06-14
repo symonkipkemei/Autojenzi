@@ -99,11 +99,11 @@ namespace Autojenzi.src.Addin.Services
 
         public void AssignQuantityAttribute()
         {
-            Stone.Quantity = Stone.TotalNumber;
-            Cement.Quantity = Cement.CalculateBagsNo();
-            Sand.Quantity = Sand.TotalWeight;
-            Dpc.Quantity = Dpc.CalculateSheets();
-            HoopIron.Quantity = HoopIron.CalculateRolls();
+            Stone.ProductQuantity = Stone.TotalNumber;
+            Cement.ProductQuantity = Cement.CalculateBagsNo();
+            Sand.ProductQuantity = Sand.TotalWeight;
+            Dpc.ProductQuantity = Dpc.CalculateSheets();
+            HoopIron.ProductQuantity = HoopIron.CalculateRolls();
         }
         public void ResetQuantities()
         {
@@ -121,6 +121,16 @@ namespace Autojenzi.src.Addin.Services
             Store.AbstractedMaterials.Add(Sand);
             Store.AbstractedMaterials.Add(Dpc);
             Store.AbstractedMaterials.Add(HoopIron);
+        }
+
+        public void storeWallPropertes()
+        {
+            Store.PropertiesList.Add(new WallProperties("Thickness", "Meters", 2000));
+            Store.PropertiesList.Add(new WallProperties("Height", "Meters", 2000));
+            Store.PropertiesList.Add(new WallProperties("Running Length", "Length", 2000));
+            Store.PropertiesList.Add(new WallProperties("Course No", "Number", 2000));
+            Store.PropertiesList.Add(new WallProperties("Motar Thickness", "Millimeter", 2000));
+            Store.PropertiesList.Add(new WallProperties("Motar Ratio", "Ratio", 2000));
         }
     }
 }

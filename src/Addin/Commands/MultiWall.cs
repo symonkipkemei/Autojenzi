@@ -40,7 +40,7 @@ namespace Autojenzi.src.Addin.Commands
                 
 
                 
-                Materials materialTable = new Materials(Store.AbstractedMaterials);
+                Materials materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
                 materialTable.ShowDialog();
 
             }

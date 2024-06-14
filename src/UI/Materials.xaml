@@ -5,29 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Autojenzi.src.UI"
         mc:Ignorable="d"
-        Title="Materials" Height="450" Width="800">
+        Title="Materials" Width="700" Height="600">
     <Grid>
         <!-- Grid Row definition-->
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="20" VerticalAlignment="Top">
-            <Label Content="Wall Material Schedule" VerticalContentAlignment="Center" FontWeight="Light" BorderBrush="Gray" FontSize="16" Margin="0,0,0,10" />
 
-            <DataGrid ItemsSource="{Binding MaterialItems}" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Height="100" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name }" Width="0.2*" />
-                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit }" Width="0.2 *" />
-                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity }" Width="0.2 *" />
-                    <DataGridTextColumn Header="Rate" Binding="{Binding Rate }" Width="0.2 *" />
-                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount }" Width="0.2 *" />
 
-                </DataGrid.Columns>
+        <Grid Grid.Row="0" Margin="5,5,5,5">
+            <StackPanel>
+                <!-- Material Name -->
+                <StackPanel Margin="5">
+                    <TextBlock Text="Machine Cut Stone Wall" FontSize="32" FontWeight="Light"  />
+                    <TextBlock Text="Category: Structure - Wall - blocks" FontSize="14" FontWeight="Light"  />
+                </StackPanel>
 
-            </DataGrid>
+                <!-- Wall Properties -->
 
-        </StackPanel>
+
+                <StackPanel Margin="5">
+                    <Label Content="Element Properties" VerticalContentAlignment="Top" FontWeight="Normal" BorderBrush="Gray" FontSize="16"  />
+
+                    <DataGrid ItemsSource="{Binding WallProperties}" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Height="Auto" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Properties (In Metric)" Binding="{Binding Properties }" Width="0.2*" />
+                            <DataGridTextColumn Header="Unit" Binding="{Binding Unit }" Width="0.2 *" />
+                            <DataGridTextColumn Header="Value" Binding="{Binding Value }" Width="0.2 *" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+                <!-- Material Properties -->
+
+                <StackPanel Margin="5">
+                    <Label Content="Material Quantities" VerticalContentAlignment="Top" FontWeight="Normal" BorderBrush="Gray" FontSize="16"  />
+
+                    <DataGrid ItemsSource="{Binding MaterialItems}" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Height="Auto" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name }" Width="0.2*" />
+                            <DataGridTextColumn Header="Unit of Product" Binding="{Binding UnitOfProduct }" Width="0.2 *" />
+                            <DataGridTextColumn Header="Product Quantities" Binding="{Binding ProductQuantity }" Width="0.2 *" />
+                            <DataGridTextColumn Header="Rate" Binding="{Binding Rate }" Width="0.2 *" />
+                            <DataGridTextColumn Header="Amount" Binding="{Binding Amount }" Width="0.2 *" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <!-- Material Properties -->
+                <StackPanel Margin="5">
+                    <TextBlock Text="NB: Kindly note that the rates used are not hardware accurate or real time.Consult your supplier, Also note that the applicable currency is in Kenyan Shilling " FontSize="14" FontWeight="Light" FontStyle="Italic"  />
+                    
+                </StackPanel>
+                
+                
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="5">
+
+            <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Left" Margin="0,10,0,0">
+                <Button Content="PDF" Width="75" Margin="5"/>
+                <Button Content="EXCEL" Width="75" Margin="5"/>
+            </StackPanel>
+        </Grid>
+        
     </Grid>
 </Window>
