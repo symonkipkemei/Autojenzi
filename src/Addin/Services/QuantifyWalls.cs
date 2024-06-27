@@ -125,12 +125,12 @@ namespace Autojenzi.src.Addin.Services
 
         public void storeWallPropertes()
         {
-            Store.PropertiesList.Add(new WallProperties("Thickness", "Meters", 2000));
-            Store.PropertiesList.Add(new WallProperties("Height", "Meters", 2000));
-            Store.PropertiesList.Add(new WallProperties("Running Length", "Length", 2000));
-            Store.PropertiesList.Add(new WallProperties("Course No", "Number", 2000));
-            Store.PropertiesList.Add(new WallProperties("Motar Thickness", "Millimeter", 2000));
-            Store.PropertiesList.Add(new WallProperties("Motar Ratio", "Ratio", 2000));
+            Store.PropertiesList.Add(new WallProperties("Thickness", "Millimeter", 150));
+            Store.PropertiesList.Add(new WallProperties("Height", "Millimeter", 3000));
+            Store.PropertiesList.Add(new WallProperties("Running Length", "Millimeter", 7600));
+            Store.PropertiesList.Add(new WallProperties("Courses", "Number (avg)", 11));
+            Store.PropertiesList.Add(new WallProperties("Motar Thickness", "Millimeter", 30));
+            Store.PropertiesList.Add(new WallProperties("Motar Ratio", "cement.sand ratio", 1.3));
         }
     }
 }

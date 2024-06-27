@@ -28,10 +28,12 @@ namespace Autojenzi.src.UI
     /// </summary>
     public partial class Materials : Window
     {
+  
         public ObservableCollection<BuildingMaterial> MaterialItems {  get; set; }
 
         public ObservableCollection<WallProperties> WallProperties { get; set; }
 
+ 
         public Materials(ObservableCollection<BuildingMaterial> storeitems, ObservableCollection<WallProperties> wallProperties)
         {
             InitializeComponent();
@@ -44,7 +46,17 @@ namespace Autojenzi.src.UI
             DataContext = this;
             MaterialItems = storeitems;
             WallProperties = wallProperties;
+            UpdateTotalAmount();
+        }
 
+        private void UpdateTotalAmount()
+        {
+            double totalAmount = 0;
+            foreach (BuildingMaterial mat in MaterialItems)
+            {
+                totalAmount += mat.Amount;
+            }
+            TxtBlockAmount.Text = totalAmount.ToString("F2");
         }
 
 
@@ -74,5 +86,13 @@ namespace Autojenzi.src.UI
             Export.ExportToExcel(materialItems, wallProperties);
 
         }
+
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }

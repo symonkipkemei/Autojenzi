@@ -17,7 +17,7 @@ namespace Autojenzi.src.Addin.Services
         public double Rate { get; set; } //constant
         public string UnitOfProduct { get; set; } //constant
         public double ProductQuantity { get; set; } // As per the unit of measure //dynamic
-        public double Amount { get { return ProductQuantity * Rate; } } //dynamic
+        public double Amount { get { return Math.Round(ProductQuantity * Rate); } } //dynamic
 
         // Quantitative properties
 
@@ -34,7 +34,7 @@ namespace Autojenzi.src.Addin.Services
 
 
 
-        // Dminsional properties
+        // Dimensional properties
         public double UnitWidth { get; set; } //constant
         public double UnitHeight { get; set; } //constant
         public double UnitLength { get; set; } //Constant
@@ -52,14 +52,18 @@ namespace Autojenzi.src.Addin.Services
 
         public double CalculateRolls()
         {
-            double NoRolls = TotalLength / UnitLength;
-            int Rolls = (int)Math.Round(NoRolls);
-            return Rolls;
+            double noRolls = TotalLength / UnitLength;
+            int rolls = (int)Math.Round(noRolls);
+            if (rolls < 1) { rolls =1; }
+            return rolls;
         }
 
         public double CalculateSheets()
         {
-            return Math.Round(TotalArea / UnitArea);
+            double noSheets = TotalArea / UnitArea;
+            int sheets = (int) Math.Round(noSheets);
+            if (sheets < 1) { sheets = 1; }
+            return sheets;
         }
 
         public void CalculateBlockVolume()
@@ -81,8 +85,6 @@ namespace Autojenzi.src.Addin.Services
         {
             Properties = properties; Unit = unit; Value = value;
         }
-     
-
     }
 }
 
