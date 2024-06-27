@@ -34,7 +34,7 @@ namespace Autojenzi.src.Addin.Services
             WallWidth = wallWidth;
 
             // Initialize building materials
-            Stone = MaterialLoader.FindBuildingMaterial("MachineCutStone");
+            Stone = MaterialLoader.FindBuildingMaterial(Store.BlockName);
             Cement = MaterialLoader.FindBuildingMaterial("Cement");
             Sand = MaterialLoader.FindBuildingMaterial("RiverSand");
             Dpc = MaterialLoader.FindBuildingMaterial("DPC");

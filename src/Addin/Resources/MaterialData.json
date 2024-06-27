@@ -44,8 +44,8 @@
       "Thickness": 0.03
     },
     {
-      "Category":"Block",
-      "ID": "CMU",
+      "Category": "Block",
+      "ID": "ConcreteMasonryUnit",
       "Name": "Concrete Masonry Unit",
       "Rate": null,
       "Unit": "Pieces",
@@ -59,7 +59,7 @@
     },
     {
       "Category": "Block",
-      "ID": "SoilBlock",
+      "ID": "MakigaSoilBlock",
       "Name": "Makiga Soil Block",
       "Rate": null,
       "Unit": "Pieces",
@@ -73,7 +73,7 @@
     },
     {
       "Category": "Block",
-      "ID": "InterlockingBlocks",
+      "ID": "InterlockingConcreteBlocks",
       "Name": "Interlocking Concrete Blocks",
       "Rate": null,
       "Unit": "Pieces",
@@ -87,7 +87,7 @@
     },
     {
       "Category": "Block",
-      "ID": "HollowBlocks",
+      "ID": "HollowConcreteBlocks",
       "Name": "Hollow Concrete Blocks",
       "Rate": null,
       "Unit": "Pieces",

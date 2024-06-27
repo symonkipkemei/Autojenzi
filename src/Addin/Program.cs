@@ -19,18 +19,27 @@ namespace Autojenzi.src.Addin
             double wallHeight = 3;
             double wallThickness = 0.2;
 
-            QuantifyWalls walls = new QuantifyWalls(wallLength, wallHeight, wallThickness);
-
-            walls.BlockWall();
-            walls.AssignQuantityAttribute();
-            walls.StoreData();
-            walls.storeWallPropertes();
-
-            Materials materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
 
             Application app = new Application();
-            app.Run(materialTable);
-           
+
+            Selection selection = new Selection();
+            selection.Closed += (s, e) =>
+            {
+                // Quantify walls after the selection window is closed
+                QuantifyWalls walls = new QuantifyWalls(wallLength, wallHeight, wallThickness);
+
+                walls.BlockWall();
+                walls.AssignQuantityAttribute();
+                walls.StoreData();
+                walls.storeWallPropertes();
+
+                // Second window
+                Materials materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
+                materialTable.Show();
+            };
+
+            app.Run(selection);
+
         }
     }
 }
