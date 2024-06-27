@@ -17,6 +17,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using OfficeOpenXml;
+using System.Diagnostics;
 
 namespace Autojenzi.src.UI
 {
@@ -47,43 +50,29 @@ namespace Autojenzi.src.UI
 
         private void PdfButton_Click(object sender, RoutedEventArgs e)
         {
-            // Specify a higher DPI for better resolution
-            double dpi = 300;
 
-            // Render the current window content to a bitmap with higher DPI
-            RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
-                (int)(this.ActualWidth * dpi / 96), (int)(this.ActualHeight * dpi / 96),
-                dpi, dpi, PixelFormats.Pbgra32);
+            // Create and configure SaveFileDialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+            saveFileDialog.Title = "Save PDF";
+            saveFileDialog.FileName = "Materials.pdf";
 
-            renderBitmap.Render(this);
-
-            // Encode the rendered bitmap to a PNG stream
-            PngBitmapEncoder encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
-
-            using (MemoryStream stream = new MemoryStream())
+            if (saveFileDialog.ShowDialog() == true)
             {
-                encoder.Save(stream);
-                stream.Position = 0;
-
-                // Create a new PDF document
-                PdfDocument pdf = new PdfDocument();
-                PdfPage pdfPage = pdf.AddPage();
-                pdfPage.Width = XUnit.FromPoint(renderBitmap.PixelWidth * 72 / dpi);
-                pdfPage.Height = XUnit.FromPoint(renderBitmap.PixelHeight * 72 / dpi);
-                XGraphics graph = XGraphics.FromPdfPage(pdfPage);
-
-                // Load the rendered bitmap into an XImage
-                XImage xImage = XImage.FromStream(stream);
-                graph.DrawImage(xImage, 0, 0, pdfPage.Width, pdfPage.Height);
-
-                // Save the PDF document
-                string pdfFilename = "Materials.pdf";
-                pdf.Save(pdfFilename);
-
-                MessageBox.Show($"PDF saved to {System.IO.Path.GetFullPath(pdfFilename)}", "PDF Export", MessageBoxButton.OK, MessageBoxImage.Information);
+                Export.ExportToPdf(this, saveFileDialog.FileName);
             }
+
         }
 
+        private void ExcelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            // Sample data extraction for demonstration purposes
+            var wallProperties = WallProperties.ToList();
+            var materialItems = MaterialItems.ToList();
+
+            Export.ExportToExcel(materialItems, wallProperties);
+
+        }
     }
 }
