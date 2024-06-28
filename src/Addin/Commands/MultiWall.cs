@@ -23,8 +23,16 @@ namespace Autojenzi.src.Addin.Commands
             try
             {
                 // Display a user interface with Options to select building technology
-                var selection = new Selection(commandData);
+                var selection = new Selection();
                 selection.ShowDialog();
+                selection.Close(); //Ensure that the dialog is closed
+
+                IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
+
+                SumWallQuantities(walls);
+                
+                var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
+                materialTable.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -32,6 +40,25 @@ namespace Autojenzi.src.Addin.Commands
                 return Result.Failed;
             }
             return Result.Succeeded;
+        }
+
+        public static void SumWallQuantities(IList<Element> walls)
+        {
+            // Instantiate materials to be used
+            QuantifyWalls abstractWall = new QuantifyWalls();
+
+            foreach (Element wall in walls)
+            {
+                abstractWall.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
+                abstractWall.WallHeight = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).AsDouble());
+                abstractWall.WallWidth = UnitsConversion.FootToMetre(0.656168);
+
+                // Sum quantities /volumes for every wall
+                abstractWall.BlockWall();
+            }
+            abstractWall.AssignQuantityAttribute();
+            abstractWall.StoreData();
+
         }
     }
 }

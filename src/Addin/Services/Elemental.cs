@@ -36,25 +36,5 @@ namespace Autojenzi.src.Addin.Services
             IList<Element> walls = collector.OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToElements();
             return walls;
         }
-
-        public static void SumWallQuantities(IList<Element> walls)
-        {
-            // Instantiate materials to be used
-            QuantifyWalls abstractWall = new QuantifyWalls();
-
-            foreach (Element wall in walls) 
-            {
-                abstractWall.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
-                abstractWall.WallHeight = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).AsDouble());
-                abstractWall.WallWidth = UnitsConversion.FootToMetre(0.656168);
-
-                abstractWall.BlockWall();
-               
-            }
-
-            abstractWall.AssignQuantityAttribute();
-            abstractWall.StoreData();
-        }
-
     }
 }

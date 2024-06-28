@@ -25,12 +25,11 @@ namespace Autojenzi.src.UI
     {
         public List<MaterialJson> Materials { get; set; }
         // store external command data reference
-        ExternalCommandData CommandData { get; }
 
-        public Selection(ExternalCommandData commandData)
+
+        public Selection()
         {
             InitializeComponent();
-            CommandData = commandData;
             LoadMaterials();
             PopulateComboBox();
             
@@ -78,20 +77,11 @@ namespace Autojenzi.src.UI
         {
             if (MaterialComboBox.SelectedValue is string selectedMaterial)
             {
-                // Revit parameters
-                UIDocument uidoc = CommandData.Application.ActiveUIDocument;
-                Document doc = uidoc.Document;
-
+               
                 // Remove spacing in the string to create an ID
                 string selectedMaterialID = selectedMaterial.Replace(" ", "");
                 Store.BlockName = selectedMaterialID;
                 this.Close();
-
-                IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
-                Elemental.SumWallQuantities(walls);
-
-                var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
-                materialTable.ShowDialog();
             }
             else
             {
