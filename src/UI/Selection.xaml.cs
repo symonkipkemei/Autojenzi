@@ -24,6 +24,7 @@ namespace Autojenzi.src.UI
     public partial class Selection : Window
     {
         public List<MaterialJson> Materials { get; set; }
+        public bool IsOk { get; private set; }
         // store external command data reference
 
 
@@ -81,6 +82,7 @@ namespace Autojenzi.src.UI
                 // Remove spacing in the string to create an ID
                 string selectedMaterialID = selectedMaterial.Replace(" ", "");
                 Store.BlockName = selectedMaterialID;
+                IsOk = true;
                 this.Close();
             }
             else
@@ -91,6 +93,7 @@ namespace Autojenzi.src.UI
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            IsOk = false;
             this.Close();
         }
     }

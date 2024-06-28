@@ -25,14 +25,20 @@ namespace Autojenzi.src.Addin.Commands
                 // Display a user interface with Options to select building technology
                 var selection = new Selection();
                 selection.ShowDialog();
-                selection.Close(); //Ensure that the dialog is closed
 
-                IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
+                if (selection.IsOk)
+                {
+                    IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
+                    SumWallQuantities(walls);
+                    var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
+                    materialTable.ShowDialog();
 
-                SumWallQuantities(walls);
-                
-                var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
-                materialTable.ShowDialog();
+                }
+
+                else
+                {
+                    return Result.Cancelled;
+                }
             }
             catch (Exception ex)
             {
