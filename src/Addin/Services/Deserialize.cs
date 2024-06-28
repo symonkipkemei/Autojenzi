@@ -19,6 +19,7 @@ public class MaterialJson
     public double? UnitWidth { get; set; }
     public double? UnitHeight { get; set; }
     public double? Thickness { get; set; }
+    public double? Ratio { get; set; }
 
     public double? TotalArea { get; set; }
     public double? TotalLength { get; set; }

@@ -67,7 +67,8 @@ namespace Autojenzi.src.UI
                     new KeyValuePair<string, object>("UnitHeight", selectedMaterial.UnitHeight),
 
                     new KeyValuePair<string, object>("Mortar Thickness", selectedMaterial.Thickness),
-           
+                    new KeyValuePair<string, object>("Mortar Ratio", selectedMaterial.Ratio),
+
                 };
 
                 PropertiesDataGrid.ItemsSource = properties;
