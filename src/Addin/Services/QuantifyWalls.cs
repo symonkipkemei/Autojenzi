@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace Autojenzi.src.Addin.Services
 {
 
-    internal class QuantifyWalls
+    public class QuantifyWalls
     {
 
         //Wall Dimensional propeties (Abstracted from revit)
-        double WallLength { get; set; }
-        double WallHeight { get; set; }
-        double WallWidth { get; set; }
+        public double WallLength { get; set; }
+        public double WallHeight { get; set; }
+        public double WallWidth { get; set; }
 
 
         public BuildingMaterial Stone { get; private set; }
@@ -27,11 +27,8 @@ namespace Autojenzi.src.Addin.Services
 
     
 
-        public QuantifyWalls(double wallLength, double wallHeight, double wallWidth)
+        public QuantifyWalls()
         {
-            WallLength = wallLength;
-            WallHeight = wallHeight;
-            WallWidth = wallWidth;
 
             // Initialize building materials
             Stone = MaterialLoader.FindBuildingMaterial(Store.BlockName);
@@ -93,7 +90,6 @@ namespace Autojenzi.src.Addin.Services
             Cement.TotalVolume += cementVolume;
             Sand.TotalVolume += sandVolume;
             Dpc.TotalArea += wallAbstract.DpcStrip.TotalArea;
-            double hpvalue = HoopIron.TotalLength;
             HoopIron.TotalLength += wallAbstract.HoopIronStrip.TotalLength;
         }
 
