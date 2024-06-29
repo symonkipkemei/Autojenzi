@@ -19,11 +19,14 @@ public class MaterialJson
     public double? UnitWidth { get; set; }
     public double? UnitHeight { get; set; }
     public double? Thickness { get; set; }
-    public double? Ratio { get; set; }
-
+    
     public double? TotalArea { get; set; }
     public double? TotalLength { get; set; }
     public double? TotalVolume { get; set; }
+
+    // Applies to Blocks only
+    public double? Ratio { get; set; }
+    public double? Intervals { get; set; }
 
 }
 

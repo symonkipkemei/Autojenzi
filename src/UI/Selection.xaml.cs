@@ -68,6 +68,7 @@ namespace Autojenzi.src.UI
 
                     new KeyValuePair<string, object>("Mortar Thickness (m)", selectedMaterial.Thickness),
                     new KeyValuePair<string, object>("Mortar Ratio (sand.cement)", selectedMaterial.Ratio),
+                    new KeyValuePair<string, object>("Hoop Iron (course intervals)", selectedMaterial.Intervals),
 
                 };
 
