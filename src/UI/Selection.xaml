@@ -19,7 +19,8 @@
         <Border Grid.Row="0" Padding="15" CornerRadius="10">
         <StackPanel  Orientation="Vertical">
             <TextBlock Text="Building Technology Selection" FontWeight="Bold" FontSize="18" Foreground="#007ACC" Margin="0,0,0,10"/>
-                <ComboBox Text="Select a material..." Name="MaterialComboBox" Width="400" Height="35" HorizontalAlignment="Center" SelectionChanged="MaterialComboBox_SelectionChanged" Background="White" Padding="5" Margin="0,0,10,0">
+                <ComboBox  Name="MaterialComboBox" Width="400" Height="35" HorizontalAlignment="Center" SelectionChanged="MaterialComboBox_SelectionChanged" Background="White" Padding="5" Margin="0,0,10,0">
+                    
                     <ComboBox.ToolTip>
                         <ToolTip Content="Click the dropdown arrow to select a material from the list." />
                     </ComboBox.ToolTip>

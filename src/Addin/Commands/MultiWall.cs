@@ -30,7 +30,7 @@ namespace Autojenzi.src.Addin.Commands
                 {
                     IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
                     SumWallQuantities(walls);
-                    var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList);
+                    var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
                     materialTable.ShowDialog();
 
                 }

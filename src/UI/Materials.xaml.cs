@@ -34,7 +34,7 @@ namespace Autojenzi.src.UI
         public ObservableCollection<WallProperties> WallProperties { get; set; }
 
  
-        public Materials(ObservableCollection<BuildingMaterial> storeitems, ObservableCollection<WallProperties> wallProperties)
+        public Materials(ObservableCollection<BuildingMaterial> storeitems, ObservableCollection<WallProperties> wallProperties, string titleName)
         {
             InitializeComponent();
             if (storeitems == null)
@@ -44,6 +44,7 @@ namespace Autojenzi.src.UI
             }
 
             DataContext = this;
+            tbTitle.Text = titleName;
             MaterialItems = storeitems;
             WallProperties = wallProperties;
             UpdateTotalAmount();

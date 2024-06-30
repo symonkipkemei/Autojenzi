@@ -83,7 +83,8 @@ namespace Autojenzi.src.UI
                
                 // Remove spacing in the string to create an ID
                 string selectedMaterialID = selectedMaterial.Replace(" ", "");
-                Store.BlockName = selectedMaterialID;
+                Store.BlockName = selectedMaterial;
+                Store.BlockID = selectedMaterialID;
                 IsOk = true;
                 this.Close();
             }

@@ -31,7 +31,7 @@ namespace Autojenzi.src.Addin.Services
         {
 
             // Initialize building materials
-            Stone = MaterialLoader.FindBuildingMaterial(Store.BlockName);
+            Stone = MaterialLoader.FindBuildingMaterial(Store.BlockID);
             Cement = MaterialLoader.FindBuildingMaterial("Cement");
             Sand = MaterialLoader.FindBuildingMaterial("RiverSand");
             Dpc = MaterialLoader.FindBuildingMaterial("DPC");
