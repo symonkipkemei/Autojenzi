@@ -38,7 +38,7 @@ namespace Autojenzi.src.Addin.Services
         }
 
 
-        public static void Create3DView(UIDocument uidoc, Document doc) 
+        public static View3D Create3DView(UIDocument uidoc, Document doc) 
         {
 
             using (Transaction trans = new Transaction(doc, "Create autojenzi 3D view"))
@@ -83,7 +83,27 @@ namespace Autojenzi.src.Addin.Services
             if (newView != null)
             {
                 uidoc.ActiveView = newView;
+                
             }
+
+
+            return newView;
+
+        }
+
+        public static void HideLevels(Document doc, View3D autojenzi)
+        {
+            using (Transaction trans = new Transaction(doc, "Hide Grids in 3D view"))
+            {
+                trans.Start();
+
+                Category gridsCategory = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Levels);
+                autojenzi.SetCategoryHidden(gridsCategory.Id, true);
+
+                trans.Commit();
+                
+            }
+
         }
     }
 }
