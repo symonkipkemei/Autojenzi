@@ -24,7 +24,9 @@ namespace Autojenzi.src.Addin.Commands
             {
                 // Display a user interface with Options to select building technology
                 View3D autojenziView = Elemental.Create3DView(uidoc, doc);
+                
                 Elemental.HideLevels(doc, autojenziView);
+                Elemental.HideGrids(doc, autojenziView);
 
                 var selection = new Selection();
                 selection.ShowDialog();

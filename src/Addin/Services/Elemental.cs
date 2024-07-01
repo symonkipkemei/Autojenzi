@@ -67,6 +67,7 @@ namespace Autojenzi.src.Addin.Services
                         autojenziView.Name = "Autojenzi";
                     }
 
+                    TaskDialog.Show("Revit", "Autojenzi 3D view created. Use this active view to quantify your walls");
                 }
 
                 trans.Commit();
@@ -93,7 +94,7 @@ namespace Autojenzi.src.Addin.Services
 
         public static void HideLevels(Document doc, View3D autojenzi)
         {
-            using (Transaction trans = new Transaction(doc, "Hide Grids in 3D view"))
+            using (Transaction trans = new Transaction(doc, "Hide Levels in 3D view"))
             {
                 trans.Start();
 
@@ -102,6 +103,21 @@ namespace Autojenzi.src.Addin.Services
 
                 trans.Commit();
                 
+            }
+
+        }
+
+        public static void HideGrids(Document doc, View3D autojenzi)
+        {
+            using (Transaction trans = new Transaction(doc, "Hide Grids in 3D view"))
+            {
+                trans.Start();
+
+                Category gridsCategory = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Grids);
+                autojenzi.SetCategoryHidden(gridsCategory.Id, true);
+
+                trans.Commit();
+
             }
 
         }
