@@ -27,6 +27,7 @@ namespace Autojenzi.src.Addin.Commands
                 
                 Elemental.HideLevels(doc, autojenziView);
                 Elemental.HideGrids(doc, autojenziView);
+                Elemental.HideAllExceptWalls(doc, autojenziView);
 
                 var selection = new Selection();
                 selection.ShowDialog();

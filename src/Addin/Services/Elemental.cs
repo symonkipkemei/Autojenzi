@@ -121,5 +121,34 @@ namespace Autojenzi.src.Addin.Services
             }
 
         }
+
+
+        public static void HideAllExceptWalls(Document doc, View3D autojenzi)
+        {
+            using (Transaction trans = new Transaction(doc, "Hide Everything Except walls"))
+            {
+                trans.Start();
+
+                Categories categories = doc.Settings.Categories;
+                
+                foreach (Category category in categories)
+                {
+                    if (category.Id.IntegerValue == (int)BuiltInCategory.OST_Walls)
+                    {
+                        continue;
+                    }
+                    
+
+                    if(category.get_AllowsVisibilityControl(autojenzi))
+                    {
+                        autojenzi.SetCategoryHidden(category.Id, true);
+                    }
+                }
+                
+                trans.Commit();
+
+            }
+
+        }
     }
 }
