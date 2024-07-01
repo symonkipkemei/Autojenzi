@@ -63,6 +63,11 @@ public static class MaterialLoader
         material.UnitWidth = materialJson.UnitWidth ?? 0;
         material.UnitHeight = materialJson.UnitHeight ?? 0;
         material.Thickness = materialJson.Thickness ?? 0;
+
+        // additional properties
+        material.Ratio = materialJson.Ratio ?? 0;
+        material.Intervals = materialJson.Intervals ?? 0;
+        
         return material;
     }
 

@@ -18,6 +18,7 @@ namespace Autojenzi.src.Addin.Services
         public double WallHeight { get; set; }
         public double WallWidth { get; set; }
 
+        public double TotalCourseNo { get; set; }
 
         public BuildingMaterial Stone { get; private set; }
         public BuildingMaterial Cement { get; private set; }
@@ -91,6 +92,10 @@ namespace Autojenzi.src.Addin.Services
             Sand.TotalVolume += sandVolume;
             Dpc.TotalArea += wallAbstract.DpcStrip.TotalArea;
             HoopIron.TotalLength += wallAbstract.HoopIronStrip.TotalLength;
+
+            // courses No
+            TotalCourseNo = wallAbstract.SecondCourse.Number + wallAbstract.FirstCourse.Number;
+
         }
 
         public void AssignQuantityAttribute()
@@ -119,14 +124,14 @@ namespace Autojenzi.src.Addin.Services
             Store.AbstractedMaterials.Add(HoopIron);
         }
 
-        public void storeWallPropertes()
+        public void storeWallPropertes(double thickness, double height, double runningLength, double courses, double mortarThickness, double mortarRatio)
         {
-            Store.PropertiesList.Add(new WallProperties("Thickness", "Millimeter", 150));
-            Store.PropertiesList.Add(new WallProperties("Height", "Millimeter", 3000));
-            Store.PropertiesList.Add(new WallProperties("Running Length", "Millimeter", 7600));
-            Store.PropertiesList.Add(new WallProperties("Courses", "Number (avg)", 11));
-            Store.PropertiesList.Add(new WallProperties("Motar Thickness", "Millimeter", 30));
-            Store.PropertiesList.Add(new WallProperties("Motar Ratio", "cement.sand ratio", 1.3));
+            Store.PropertiesList.Add(new WallProperties("Thickness", "Meters (avg. width per Wall)", thickness));
+            Store.PropertiesList.Add(new WallProperties("Height", "Meters (avg. height per Wall)", height));
+            Store.PropertiesList.Add(new WallProperties("Running Length", "Meters", runningLength));
+            Store.PropertiesList.Add(new WallProperties("Courses", "Number (avg. courses per Wall)", courses));
+            Store.PropertiesList.Add(new WallProperties("Motar Thickness", "Millimeters", UnitsConversion.MtoMm(mortarThickness)));
+            Store.PropertiesList.Add(new WallProperties("Motar Ratio", "cement.sand ratio", mortarRatio));
         }
     }
 }

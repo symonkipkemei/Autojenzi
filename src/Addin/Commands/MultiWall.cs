@@ -23,11 +23,14 @@ namespace Autojenzi.src.Addin.Commands
             try
             {
                 // Display a user interface with Options to select building technology
+                Elemental.Create3DView(uidoc, doc);
+
                 var selection = new Selection();
                 selection.ShowDialog();
 
                 if (selection.IsOk)
                 {
+                    
                     IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
                     SumWallQuantities(walls);
                     var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
@@ -53,6 +56,16 @@ namespace Autojenzi.src.Addin.Commands
             // Instantiate materials to be used
             QuantifyWalls abstractWall = new QuantifyWalls();
 
+
+            // sum of wall properties
+            double totalRunningLength = 0;
+            double totalHeight = 0;
+            double totalWidth = 0;
+            double totalCourses = 0;
+            double count = 0;
+
+
+
             foreach (Element wall in walls)
             {
                 abstractWall.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
@@ -61,10 +74,26 @@ namespace Autojenzi.src.Addin.Commands
 
                 // Sum quantities /volumes for every wall
                 abstractWall.BlockWall();
+
+                // Calculate the total running length, thickness, and height
+                totalRunningLength += abstractWall.WallLength;
+                totalHeight += abstractWall.WallHeight;
+                totalWidth += abstractWall.WallWidth;
+                totalCourses += abstractWall.TotalCourseNo;
+                count += 1;
+
             }
             abstractWall.AssignQuantityAttribute();
             abstractWall.StoreData();
 
+            // avarages
+            double avgHeight = totalHeight / count;
+            double avgWidth = totalWidth / count;
+            double avgCourses = totalCourses / count;
+            double mortarRatio = abstractWall.Stone.Ratio;
+            double mortarThickness = abstractWall.Stone.Thickness;
+
+            abstractWall.storeWallPropertes(avgWidth, avgHeight, totalRunningLength, avgCourses, mortarThickness, mortarRatio);
         }
     }
 }

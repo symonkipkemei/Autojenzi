@@ -36,5 +36,54 @@ namespace Autojenzi.src.Addin.Services
             IList<Element> walls = collector.OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToElements();
             return walls;
         }
+
+
+        public static void Create3DView(UIDocument uidoc, Document doc) 
+        {
+
+            using (Transaction trans = new Transaction(doc, "Create autojenzi 3D view"))
+            { 
+                trans.Start();
+
+                // check if the view already exists
+
+                View3D autojenziView = new FilteredElementCollector(doc)
+                    .OfClass(typeof(View3D))
+                    .Cast<View3D>()
+                    .FirstOrDefault(v=> v.Name.Equals("Autojenzi"));
+
+                if (autojenziView == null)
+                {
+                    // Get the 3D view type in the docs
+                    ViewFamilyType viewFamilyType = new FilteredElementCollector(doc)
+                        .OfClass(typeof(ViewFamilyType))
+                        .Cast<ViewFamilyType>()
+                        .FirstOrDefault( x => x.ViewFamily == ViewFamily.ThreeDimensional);
+
+                    if (viewFamilyType != null)
+                    {
+                        //Create the 3D view
+                        autojenziView = View3D.CreateIsometric(doc, viewFamilyType.Id);
+                        autojenziView.Name = "Autojenzi";
+                    }
+
+                }
+
+                trans.Commit();
+            
+            }
+
+            //Set created view as active
+
+            var newView = new FilteredElementCollector(doc)
+                .OfClass(typeof(View3D))
+                .Cast<View3D>()
+                .FirstOrDefault(v => v.Name.Equals("Autojenzi"));
+
+            if (newView != null)
+            {
+                uidoc.ActiveView = newView;
+            }
+        }
     }
 }

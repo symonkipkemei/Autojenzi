@@ -32,14 +32,20 @@ namespace Autojenzi.src.Addin.Services
         public double TotalArea { get; set; }
         public double TotalNumber { get; set; }
 
-
+        public double TotalLength { get; set; }
 
         // Dimensional properties
         public double UnitWidth { get; set; } //constant
         public double UnitHeight { get; set; } //constant
         public double UnitLength { get; set; } //Constant
-        public double Thickness { get; set; }
-        public double TotalLength { get; set; }
+        
+        
+
+        //Additional properties
+
+        public double Ratio { get; set; } // Mortar Ratio
+        public double Intervals { get; set; } //Interpreted as Hoop iron intervals
+        public double Thickness { get; set; } //Mortar Thickness
 
 
 
@@ -74,17 +80,5 @@ namespace Autojenzi.src.Addin.Services
 
     }
 
-
-    public class WallProperties
-    {
-        public string Properties { get; set; }
-        public string Unit { get; set; }
-        public double Value { get; set; }
-
-        public WallProperties(string properties, string unit, double value) 
-        {
-            Properties = properties; Unit = unit; Value = value;
-        }
-    }
 }
 

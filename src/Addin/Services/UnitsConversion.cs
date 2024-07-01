@@ -71,6 +71,11 @@ namespace Autojenzi.src.Addin.Services
         {
             return (weight / 1000);
         }
+
+        public static double MtoMm(double length)
+        {
+            return (length * 1000);
+        }
     }
 }
 
