@@ -31,11 +31,23 @@ namespace Autojenzi.src.Addin.Commands
 
                 if (selection.IsOk)
                 {
-                    
+                    // Ensure the user has selected walls before proceeding
+
                     IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
-                    SumWallQuantities(walls);
-                    var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
-                    materialTable.ShowDialog();
+                    if (walls.Count == 0)
+                    {
+                        TaskDialog.Show("Error", "No walls Selected ");
+                    
+                    }
+
+                    else
+                    {
+                        SumWallQuantities(walls);
+                        var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
+                        materialTable.ShowDialog();
+
+                    }
+                    
 
                 }
 
