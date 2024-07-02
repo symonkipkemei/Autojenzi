@@ -12,6 +12,7 @@ using Autodesk.Revit.DB.Structure;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media.Media3D;
+using Autodesk.Revit.UI.Selection;
 
 namespace Autojenzi.src.Addin.Services
 {
@@ -20,7 +21,7 @@ namespace Autojenzi.src.Addin.Services
         public static IList<Element> SelectMultipleWalls(UIDocument uidoc, Document doc)
         {
             IList<Element> walls = new List<Element>();
-            IList<Reference> references = uidoc.Selection.PickObjects(Autodesk.Revit.UI.Selection.ObjectType.Element);
+            IList<Reference> references = uidoc.Selection.PickObjects(ObjectType.Element, new WallSelectionFilter());
             foreach (Reference reference in references)
             {
                 Element wall = doc.GetElement(reference);
@@ -149,4 +150,20 @@ namespace Autojenzi.src.Addin.Services
 
         }
     }
+
+
+    public class WallSelectionFilter : ISelectionFilter
+    {
+        public bool AllowElement(Element element)
+        {
+            return element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_Walls;
+        }
+
+        public bool AllowReference(Reference reference, XYZ position)
+        {
+            return false;
+        }
+    }
 }
+
+

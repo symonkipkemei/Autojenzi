@@ -29,6 +29,7 @@ namespace Autojenzi.src.Addin.Commands
                 Elemental.HideGrids(doc, autojenziView);
                 Elemental.HideAllExceptWalls(doc, autojenziView);
 
+                // Add a timeout
                 var selection = new Selection();
                 selection.ShowDialog();
 
