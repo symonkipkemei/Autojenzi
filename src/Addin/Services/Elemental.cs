@@ -135,11 +135,9 @@ namespace Autojenzi.src.Addin.Services
                 {
                     if (category.Id.IntegerValue == (int)BuiltInCategory.OST_Walls)
                     {
-                        continue;
+                        continue; // skips the rest of the code
                     }
-                    
-
-                    if(category.get_AllowsVisibilityControl(autojenzi))
+                    else if(category.get_AllowsVisibilityControl(autojenzi))
                     {
                         autojenzi.SetCategoryHidden(category.Id, true);
                     }
