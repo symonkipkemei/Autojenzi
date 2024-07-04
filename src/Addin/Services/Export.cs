@@ -25,20 +25,49 @@ namespace Autojenzi.src.Addin.Services
 
             using (var package = new ExcelPackage())
             {
-                var wsWallProperties = package.Workbook.Worksheets.Add("Wall Properties");
+                try
+                {
+                    var wsWallProperties = package.Workbook.Worksheets.Add("Wall Properties");
                 wsWallProperties.Cells.LoadFromCollection(wallProperties, true);
 
                 var wsMaterialItems = package.Workbook.Worksheets.Add("Material Items");
                 wsMaterialItems.Cells.LoadFromCollection(materialItems, true);
 
-                var filePath = "MaterialData.xlsx";
+                //Get the desktoppath that is consistent for all folders
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                var filePath = Path.Combine(desktopPath, "Autojenzi_MaterialData.xlsx");
                 var file = new FileInfo(filePath);
+
+           
+                if (file.Exists)
+                    {
+                        file.Delete(); // Overwrite if the file already exists
+                    }
+
+
                 package.SaveAs(file);
                 MessageBox.Show($"Data exported to {filePath}");
 
-
                 // Automatically open the Excel file
                 Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
+
+                }
+
+                catch (UnauthorizedAccessException ex)
+                {
+                    MessageBox.Show($"Access to the path is denied: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+
+                catch (IOException ex)
+                {
+                    MessageBox.Show($"I/O error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
