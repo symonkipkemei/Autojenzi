@@ -83,11 +83,13 @@ namespace Autojenzi.src.Addin.Commands
 
 
 
-            foreach (Element wall in walls)
+            foreach (Element elem in walls)
             {
+                Wall wall = elem as Wall;
+
                 abstractWall.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
                 abstractWall.WallHeight = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).AsDouble());
-                abstractWall.WallWidth = UnitsConversion.FootToMetre(0.656168);
+                abstractWall.WallWidth = UnitsConversion.FootToMetre(Elemental.GetWallThickness(wall));
 
                 // Sum quantities /volumes for every wall
                 abstractWall.BlockWall();

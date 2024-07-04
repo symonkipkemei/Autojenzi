@@ -149,6 +149,29 @@ namespace Autojenzi.src.Addin.Services
             }
 
         }
+
+        public static double GetWallThickness(Wall wall )
+        {
+            // Get the type of wall
+            WallType walltype = wall.WallType;
+
+            // Compound structure of the wall;
+            double totalThickness = 0.0;
+
+            CompoundStructure structure = walltype.GetCompoundStructure();
+            if (structure != null)
+            {
+                
+                foreach (CompoundStructureLayer layer in structure.GetLayers())
+                {
+                    totalThickness += layer.Width;
+                }
+
+            }
+
+            return totalThickness;
+
+        }
     }
 
 
