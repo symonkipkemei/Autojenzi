@@ -26,7 +26,7 @@ public class MaterialJson
 
     // Applies to Blocks only
     public double? Ratio { get; set; }
-    public double? Intervals { get; set; }
+    public int? Intervals { get; set; }
 
 }
 

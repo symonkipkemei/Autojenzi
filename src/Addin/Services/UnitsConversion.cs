@@ -67,6 +67,17 @@ namespace Autojenzi.src.Addin.Services
             return volume * _cubicFootToCubicMeter;
         }
 
+
+        /// <summary>
+        ///     Convert a given area in feet to cubic meters.
+        /// </summary>
+        /// 
+        public static double sqfToSqm (double area)
+        {
+            return area * _sqfToSqm;
+        }
+
+
         public static double gramsToKg(double weight)
         {
             return (weight / 1000);

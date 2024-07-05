@@ -44,7 +44,7 @@ namespace Autojenzi.src.Addin.Services
         //Additional properties
 
         public double Ratio { get; set; } // Mortar Ratio
-        public double Intervals { get; set; } //Interpreted as Hoop iron intervals
+        public int Intervals { get; set; } //Interpreted as Hoop iron intervals
         public double Thickness { get; set; } //Mortar Thickness
 
 

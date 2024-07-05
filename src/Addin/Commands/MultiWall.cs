@@ -71,15 +71,18 @@ namespace Autojenzi.src.Addin.Commands
         public static void SumWallQuantities(IList<Element> walls)
         {
             // Instantiate materials to be used
-            QuantifyWalls abstractWall = new QuantifyWalls();
+            QuantifyWalls quantifywalls = new QuantifyWalls();
+            quantifywalls.ResetQuantities();
+        
 
 
             // sum of wall properties
             double totalRunningLength = 0;
             double totalHeight = 0;
             double totalWidth = 0;
-            double totalCourses = 0;
-            double count = 0;
+            double totalArea = 0;
+            double totalVolume = 0;
+            int count = 0;
 
 
 
@@ -87,32 +90,36 @@ namespace Autojenzi.src.Addin.Commands
             {
                 Wall wall = elem as Wall;
 
-                abstractWall.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
-                abstractWall.WallHeight = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).AsDouble());
-                abstractWall.WallWidth = UnitsConversion.FootToMetre(Elemental.GetWallThickness(wall));
+                quantifywalls.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
+                quantifywalls.WallHeight = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).AsDouble());
+                quantifywalls.WallWidth = UnitsConversion.FootToMetre(Elemental.GetWallThickness(wall));
+                quantifywalls.WallArea = UnitsConversion.sqfToSqm(wall.get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED).AsDouble());
+                quantifywalls.WallVolume = UnitsConversion.CubicFootToCubicMeter(wall.get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble());
 
                 // Sum quantities /volumes for every wall
-                abstractWall.BlockWall();
+                quantifywalls.AbstractBlockQuantities();
 
-                // Calculate the total running length, thickness, and height
-                totalRunningLength += abstractWall.WallLength;
-                totalHeight += abstractWall.WallHeight;
-                totalWidth += abstractWall.WallWidth;
-                totalCourses += abstractWall.TotalCourseNo;
+                // Calculate the total running length, thickness,height, area and volume
+                totalRunningLength += quantifywalls.WallLength;
+                totalHeight += quantifywalls.WallHeight;
+                totalWidth += quantifywalls.WallWidth;
+                totalArea += quantifywalls.WallArea;
+                totalVolume += quantifywalls.WallVolume;
+
+
                 count += 1;
 
             }
-            abstractWall.AssignQuantityAttribute();
-            abstractWall.StoreData();
+            quantifywalls.AssignQuantityAttribute();
+            quantifywalls.StoreData();
 
             // avarages
             double avgHeight = totalHeight / count;
             double avgWidth = totalWidth / count;
-            double avgCourses = totalCourses / count;
-            double mortarRatio = abstractWall.Stone.Ratio;
-            double mortarThickness = abstractWall.Stone.Thickness;
+            double mortarRatio = quantifywalls.Stone.Ratio;
+            double mortarThickness = quantifywalls.Stone.Thickness;
 
-            abstractWall.storeWallPropertes(avgWidth, avgHeight, totalRunningLength, avgCourses, mortarThickness, mortarRatio);
+            quantifywalls.StoreWallPropertes(count,avgWidth, avgHeight, totalRunningLength, totalArea,totalVolume, mortarThickness, mortarRatio);
         }
     }
 }

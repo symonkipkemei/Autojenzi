@@ -17,9 +17,8 @@ namespace Autojenzi.src.Addin.Services
         public double WallLength { get; set; }
         public double WallHeight { get; set; }
         public double WallWidth { get; set; }
-
-        public double TotalCourseNo { get; set; }
-
+        public double WallArea { get; set; } //Note that the wall area is not the same as L x W because a wall be a non-orthogonal form
+        public double WallVolume { get; set; }
         public BuildingMaterial Stone { get; private set; }
         public BuildingMaterial Cement { get; private set; }
         public BuildingMaterial Sand { get; private set; }
@@ -40,62 +39,40 @@ namespace Autojenzi.src.Addin.Services
 
         }
 
-        public void BlockWall()
+        public void AbstractBlockQuantities()
         {
-            double blockHeight = Stone.UnitHeight; 
-            double blockLength = Stone.UnitWidth; 
-            double blockWidth = Stone.UnitWidth;
-            double jointThickness = Stone.Thickness;
 
-            BlockType fullBlock = new BlockType(blockLength, blockHeight, blockWidth);
-            BlockType stackBlock = new BlockType(blockLength / (3/4), blockHeight, blockWidth);
-            BlockType toothBlock = new BlockType(blockLength / (1/2), blockHeight, blockWidth);
-        
-            Joint verticalJoint = new Joint(jointThickness, blockHeight, blockWidth); 
-            Joint horizontalJoint = new Joint(jointThickness, WallLength, blockWidth);
+            Joint verticalJoint = new Joint();
+            Joint horizontalJoint = new Joint();
 
-            HoopIronStrip hoopIronStrip = new HoopIronStrip(WallLength);
-            DpcStrip dpcStrip = new DpcStrip(WallWidth, WallLength);
+            Block block = new Block(Stone, verticalJoint, horizontalJoint);
 
-            Course firstCourse = new Course(fullBlock, toothBlock, stackBlock, verticalJoint, horizontalJoint, WallLength, "First Course");
-            Course secondCourse = new Course(fullBlock, toothBlock, stackBlock, verticalJoint, horizontalJoint, WallLength, "Second Course");
-
-            //Build Blocks ( Construct blocks and joints by placing one by one to build a course)
-            firstCourse.BuildACourse(true);
-            secondCourse.BuildACourse(false);
-
-            WallAbstract wallAbstract = new WallAbstract(firstCourse, secondCourse, hoopIronStrip, dpcStrip,WallHeight);
-            // Construct a wall by placing courses,hoopiron and dpc to build an abstract wall
-            wallAbstract.BuildCourses();
-            double stripNumber = wallAbstract.HoopIronStrip.Number;
-            double stripLength = hoopIronStrip.StripLength;
-            double totalArea = wallAbstract.HoopIronStrip.TotalLength;
-            //blocks (full,tooth,stack)
-            double fullBlocksNo = firstCourse.FullBlockNo + secondCourse.FullBlockNo;
-            double stackBlocksNo = firstCourse.StackBlockNo + secondCourse.StackBlockNo;
-            double toothBlockNo = firstCourse.ToothBlockNo + secondCourse.ToothBlockNo;
-
-            // Volume of joints (Horizontal + Vertical)
-            double horizontalJointVolume = (firstCourse.HorizontalJointNo + secondCourse.HorizontalJointNo) * horizontalJoint.Volume;
-            double verticalJointVolume = (firstCourse.VerticalJointNo +  secondCourse.VerticalJointNo) * verticalJoint.Volume;
-            double totalJointVolume = verticalJointVolume + horizontalJointVolume;
+            //Number of Blocks
+            double blocksNo = Math.Round(WallArea / block.BlockArea);
+       
+            // Joint Volume
+            double totalJointVolume = block.BlockJointVolume * blocksNo;
 
             //Mortar
-            Mortar mortar = new Mortar();
-            mortar.MortarVolume = totalJointVolume;
+            int cementRatio = (int)Math.Floor(Stone.Ratio);
+            int sandRatio = (int)((Stone.Ratio - cementRatio)*10);
+            Mortar mortar = new Mortar(cementRatio, sandRatio){ MortarVolume = totalJointVolume };
             double sandVolume = mortar.SandVolume;
             double cementVolume = mortar.CementVolume;
 
+            // dpc
+            DpcStrip dpcStrip = new DpcStrip(WallWidth, WallHeight);    
+
+            // no of courses
+            int courses = (int)Math.Round (WallHeight/ block.BlockHeight);
+            HoopIronStrip hoopIronStrip = new HoopIronStrip(WallLength, courses, Stone.Intervals);
+
             //Material quantities
-            Stone.TotalNumber += fullBlocksNo + stackBlocksNo + toothBlockNo;
+            Stone.TotalNumber += blocksNo + courses; //The toothblocks will be halfed on both sides depending on the number of courses
             Cement.TotalVolume += cementVolume;
             Sand.TotalVolume += sandVolume;
-            Dpc.TotalArea += wallAbstract.DpcStrip.TotalArea;
-            HoopIron.TotalLength += wallAbstract.HoopIronStrip.TotalLength;
-
-            // courses No
-            TotalCourseNo = wallAbstract.SecondCourse.Number + wallAbstract.FirstCourse.Number;
-
+            Dpc.TotalArea += dpcStrip.SectionalArea;
+            HoopIron.TotalLength += hoopIronStrip.TotalLength;
         }
 
         public void AssignQuantityAttribute()
@@ -108,11 +85,12 @@ namespace Autojenzi.src.Addin.Services
         }
         public void ResetQuantities()
         {
-            Stone.TotalNumber = 0;
-            Cement.TotalVolume = 0;
-            Sand.TotalVolume = 0;
-            Dpc.TotalArea = 0;
-            HoopIron.TotalLength = 0;
+            Stone.ProductQuantity = 0;
+            Cement.ProductQuantity = 0;
+            Sand.ProductQuantity = 0;
+            Dpc.ProductQuantity = 0;
+            HoopIron.ProductQuantity = 0;
+
         }
 
         public void StoreData()
@@ -124,12 +102,14 @@ namespace Autojenzi.src.Addin.Services
             Store.AbstractedMaterials.Add(HoopIron);
         }
 
-        public void storeWallPropertes(double thickness, double height, double runningLength, double courses, double mortarThickness, double mortarRatio)
+        public void StoreWallPropertes(int count, double thickness, double height, double runningLength, double area, double volume, double mortarThickness, double mortarRatio)
         {
-            Store.PropertiesList.Add(new WallProperties("Thickness", "Meters (avg. width per Wall)", thickness));
-            Store.PropertiesList.Add(new WallProperties("Height", "Meters (avg. height per Wall)", height));
-            Store.PropertiesList.Add(new WallProperties("Running Length", "Meters", runningLength));
-            Store.PropertiesList.Add(new WallProperties("Courses", "Number (avg. courses per Wall)", courses));
+            Store.PropertiesList.Add(new WallProperties("Selected Elements", "Number", count));
+            Store.PropertiesList.Add(new WallProperties("Thickness", "Meters (avg.)", Math.Round(thickness,2)));
+            Store.PropertiesList.Add(new WallProperties("Height", "Meters (avg.)", Math.Round(height, 2)));
+            Store.PropertiesList.Add(new WallProperties("Running Length", "Meters (total)", Math.Round(runningLength, 2)));
+            Store.PropertiesList.Add(new WallProperties("Area", "Square Meters (total)", Math.Round(area, 2)));
+            Store.PropertiesList.Add(new WallProperties("Volume", "Cubic Meters (total)", Math.Round(volume, 2)));
             Store.PropertiesList.Add(new WallProperties("Motar Thickness", "Millimeters", UnitsConversion.MtoMm(mortarThickness)));
             Store.PropertiesList.Add(new WallProperties("Motar Ratio", "cement.sand ratio", mortarRatio));
         }
