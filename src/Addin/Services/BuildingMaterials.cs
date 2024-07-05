@@ -80,5 +80,14 @@ namespace Autojenzi.src.Addin.Services
 
     }
 
+    public class MaterialItemExport
+    {
+        public string Name { get; set; }
+        public string UnitOfProduct { get; set; }
+        public double ProductQuantity { get; set; }
+        public double Rate { get; set; }
+        public double Amount { get; set; }
+    }
+
 }
 

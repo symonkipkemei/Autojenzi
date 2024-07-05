@@ -27,29 +27,40 @@ namespace Autojenzi.src.Addin.Services
             {
                 try
                 {
-                    var wsWallProperties = package.Workbook.Worksheets.Add("Wall Properties");
-                wsWallProperties.Cells.LoadFromCollection(wallProperties, true);
+                    //Wall properties
+                    var wsWallProperties = package.Workbook.Worksheets.Add("Element Quantities");
+                    wsWallProperties.Cells.LoadFromCollection(wallProperties, true);
 
-                var wsMaterialItems = package.Workbook.Worksheets.Add("Material Items");
-                wsMaterialItems.Cells.LoadFromCollection(materialItems, true);
+                    //materials
+                    var wsMaterialItems = package.Workbook.Worksheets.Add("Material Quantities");
+                    var materialItemExports = materialItems.Select(mi => new MaterialItemExport
+                    {
+                        Name = mi.Name,
+                        UnitOfProduct = mi.UnitOfProduct,
+                        ProductQuantity = mi.ProductQuantity,
+                        Rate = mi.Rate,
+                        Amount = mi.Amount
+                    }).ToList();
 
-                //Get the desktoppath that is consistent for all folders
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                var filePath = Path.Combine(desktopPath, "Autojenzi_MaterialData.xlsx");
-                var file = new FileInfo(filePath);
+                    wsMaterialItems.Cells.LoadFromCollection(materialItemExports, true);
+
+                    //Get the desktoppath that is consistent for all folders
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    var filePath = Path.Combine(desktopPath, "Autojenzi_MaterialData.xlsx");
+                    var file = new FileInfo(filePath);
 
            
-                if (file.Exists)
-                    {
-                        file.Delete(); // Overwrite if the file already exists
-                    }
+                    if (file.Exists)
+                        {
+                            file.Delete(); // Overwrite if the file already exists
+                        }
 
 
-                package.SaveAs(file);
-                MessageBox.Show($"Data exported to {filePath}");
+                    package.SaveAs(file);
+                    MessageBox.Show($"Data exported to {filePath}");
 
-                // Automatically open the Excel file
-                Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
+                    // Automatically open the Excel file
+                    Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
 
                 }
 
