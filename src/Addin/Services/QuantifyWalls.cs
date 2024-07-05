@@ -79,7 +79,7 @@ namespace Autojenzi.src.Addin.Services
         {
             Stone.ProductQuantity = Stone.TotalNumber;
             Cement.ProductQuantity = Cement.CalculateBagsNo();
-            Sand.ProductQuantity = Sand.TotalWeight;
+            Sand.ProductQuantity = Math.Round(Sand.TotalWeight,2);
             Dpc.ProductQuantity = Dpc.CalculateSheets();
             HoopIron.ProductQuantity = HoopIron.CalculateRolls();
         }
