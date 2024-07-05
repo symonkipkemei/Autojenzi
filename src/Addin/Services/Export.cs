@@ -79,8 +79,10 @@ namespace Autojenzi.src.Addin.Services
             double dpi = 300;
 
             // Render the current window content to a bitmap with higher DPI
+            double renderHeight = window.ActualHeight - 80;
+            double renderWidth = window.ActualWidth - 15;
             RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
-                (int)(window.ActualWidth * dpi / 96), (int)(window.ActualHeight * dpi / 96),
+                (int)(renderWidth * dpi / 96), (int)(renderHeight * dpi / 96),
                 dpi, dpi, PixelFormats.Pbgra32);
 
             renderBitmap.Render(window);
