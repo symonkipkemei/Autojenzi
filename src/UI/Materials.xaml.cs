@@ -68,7 +68,7 @@ namespace Autojenzi.src.UI
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
             saveFileDialog.Title = "Save PDF";
-            saveFileDialog.FileName = "Materials.pdf";
+            saveFileDialog.FileName = "Autojenzi_Building Materials.pdf";
 
             if (saveFileDialog.ShowDialog() == true)
             {

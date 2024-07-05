@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Autojenzi.src.UI"
         mc:Ignorable="d"
-        Title="Materials" Width="800" Height="700" Background="#f2f2f2">
+        Title="Materials" Width="800" Height="Auto" Background="#f2f2f2">
 
     <Grid Margin="10">
         <!-- Define Row Definitions -->
@@ -27,7 +27,7 @@
         <StackPanel Grid.Row="1" Margin="5">
             <!-- Wall Properties -->
             <StackPanel Margin="5">
-                <Label Content="Element Properties" FontWeight="Normal" FontSize="16" Margin="0,5,0,5" />
+                <Label Content="Element Quantities" FontWeight="Normal" FontSize="16" Margin="0,5,0,5" />
                 <DataGrid ItemsSource="{Binding WallProperties}" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Height="Auto" Margin="0,5,0,15">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Properties (In Metric)" Binding="{Binding Properties}" Width="0.33*" />
@@ -59,7 +59,7 @@
 
             <!-- Warning Message -->
             <Border Margin="5" Background="#FFEB3B" CornerRadius="5" Padding="10">
-                <TextBlock x:Name="tbWarning" TextWrapping="Wrap" Text="NB: Kindly note that the rates used are not hardware accurate or real-time. Consult your supplier. Also, note that the applicable currency is in Kenyan Shilling." FontSize="14" FontWeight="Light" FontStyle="Italic" />
+                <TextBlock x:Name="tbWarning" TextWrapping="Wrap" Text="NB: Kindly note that the rates used are not hardware accurate or real-time. Consult your supplier. Also, note that the applicable currency is in Kenyan Shilling at the moment." FontSize="14" FontWeight="Light" FontStyle="Italic" />
             </Border>
         </StackPanel>
 
