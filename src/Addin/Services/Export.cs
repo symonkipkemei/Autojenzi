@@ -27,9 +27,23 @@ namespace Autojenzi.src.Addin.Services
             {
                 try
                 {
+                    //custom blue color for excel header
+                    var customBlueColor = System.Drawing.Color.FromArgb(1, 123, 204);
+
+
                     //Wall properties
                     var wsWallProperties = package.Workbook.Worksheets.Add("Element Quantities");
                     wsWallProperties.Cells.LoadFromCollection(wallProperties, true);
+                    wsWallProperties.Cells[wsWallProperties.Dimension.Address].AutoFitColumns();
+
+                    // Make the first row bold
+                    using (var range = wsWallProperties.Cells[1, 1, 1, wsWallProperties.Dimension.End.Column])
+                    {
+                        range.Style.Font.Bold = true;
+                        range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(customBlueColor);
+                        range.Style.Font.Color.SetColor(System.Drawing.Color.White);
+                    }
 
                     //materials
                     var wsMaterialItems = package.Workbook.Worksheets.Add("Material Quantities");
@@ -43,6 +57,16 @@ namespace Autojenzi.src.Addin.Services
                     }).ToList();
 
                     wsMaterialItems.Cells.LoadFromCollection(materialItemExports, true);
+                    wsMaterialItems.Cells[wsMaterialItems.Dimension.Address].AutoFitColumns();
+
+                    // Make the first row bold
+                    using (var range = wsMaterialItems.Cells[1, 1, 1, wsMaterialItems.Dimension.End.Column])
+                    {
+                        range.Style.Font.Bold = true;
+                        range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(customBlueColor);
+                        range.Style.Font.Color.SetColor(System.Drawing.Color.White);
+                    }
 
                     //Get the desktoppath that is consistent for all folders
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
