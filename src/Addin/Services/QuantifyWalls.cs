@@ -49,20 +49,19 @@ namespace Autojenzi.src.Addin.Services
             Block block = new Block(Stone, verticalJoint, horizontalJoint);
 
             //Number of Blocks
-            double blocksNo = Math.Round(WallArea / block.BlockArea);
+            double blocksNo = WallArea / block.BlockArea;
+            MessageBox.Show($"Wall area: {WallArea}, Block area: {block.BlockArea},Block No: {blocksNo} ");
        
             // Joint Volume
             double totalJointVolume = block.BlockJointVolume * blocksNo;
-            MessageBox.Show($"Joint Volume: {block.BlockJointVolume}, Block No: {blocksNo}");
-
+        
             //Mortar
-           int cementRatio = (int)Math.Floor(Stone.Ratio);
+            int cementRatio = (int)Math.Floor(Stone.Ratio);
             int sandRatio = (int)((Stone.Ratio - cementRatio)*10);
             Mortar mortar = new Mortar(cementRatio, sandRatio){ MortarVolume = totalJointVolume };
             double sandVolume = mortar.SandVolume;
             double cementVolume = mortar.CementVolume;
 
-            MessageBox.Show($"Sand Volume: {sandVolume}, Cement Volume: {cementVolume}, Total Volume: {totalJointVolume}");
 
             // dpc
             DpcStrip dpcStrip = new DpcStrip(WallWidth, WallLength);    
