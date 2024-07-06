@@ -61,7 +61,7 @@ namespace Autojenzi.src.Addin.Services
             double noRolls = TotalLength / UnitLength;
             int rolls = (int)Math.Ceiling(noRolls);
             MessageBox.Show($"Total Length: {TotalLength}, Unit Length: {UnitLength}, Rolls: {noRolls}");
-            if (rolls < 1) { rolls =1; }
+        
             return rolls;
         }
 
@@ -69,9 +69,8 @@ namespace Autojenzi.src.Addin.Services
         {
             UnitArea = UnitLength * UnitWidth;
             double noSheets = TotalArea / UnitArea;
-            
             int sheets = (int) Math.Ceiling(noSheets);
-            if (sheets < 1) { sheets = 1; }
+ 
             return sheets;
         }
 
