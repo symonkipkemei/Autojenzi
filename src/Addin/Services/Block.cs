@@ -98,7 +98,7 @@ namespace Autojenzi.src.Addin.Services
 
         internal DpcStrip(double WallWidth, double WallLength)
         {
-            double offset = 25; //25mm
+            double offset = 0.025; //0.025m
             SectionWidth = offset + WallWidth + offset;
             SectionLength = WallLength;
         }

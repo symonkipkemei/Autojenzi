@@ -52,22 +52,24 @@ namespace Autojenzi.src.Addin.Services
         public double CalculateBagsNo()
         {
             double aproxBags = TotalWeight / UnitWeight;
-            int EstimateBags = (int)Math.Round(aproxBags);
+            int EstimateBags = (int)Math.Ceiling(aproxBags);
             return EstimateBags;
         }
 
         public double CalculateRolls()
         {
             double noRolls = TotalLength / UnitLength;
-            int rolls = (int)Math.Round(noRolls);
+            int rolls = (int)Math.Ceiling(noRolls);
             if (rolls < 1) { rolls =1; }
             return rolls;
         }
 
         public double CalculateSheets()
         {
+            UnitArea = UnitLength * UnitWidth;
             double noSheets = TotalArea / UnitArea;
-            int sheets = (int) Math.Round(noSheets);
+            MessageBox.Show($"Total area: {TotalArea}, Unit Area: {UnitArea}, Sheets: {noSheets}");
+            int sheets = (int) Math.Ceiling(noSheets);
             if (sheets < 1) { sheets = 1; }
             return sheets;
         }

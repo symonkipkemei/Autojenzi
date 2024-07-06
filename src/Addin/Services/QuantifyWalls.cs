@@ -61,7 +61,7 @@ namespace Autojenzi.src.Addin.Services
             double cementVolume = mortar.CementVolume;
 
             // dpc
-            DpcStrip dpcStrip = new DpcStrip(WallWidth, WallHeight);    
+            DpcStrip dpcStrip = new DpcStrip(WallWidth, WallLength);    
 
             // no of courses
             int courses = (int)Math.Round (WallHeight/ block.BlockHeight);
