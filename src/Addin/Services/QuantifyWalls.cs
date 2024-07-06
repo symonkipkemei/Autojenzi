@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Autojenzi.src.Addin.Services
 {
@@ -65,6 +66,9 @@ namespace Autojenzi.src.Addin.Services
 
             // no of courses
             int courses = (int)Math.Round (WallHeight/ block.BlockHeight);
+
+            MessageBox.Show($"Courses: {courses}");
+
             HoopIronStrip hoopIronStrip = new HoopIronStrip(WallLength, courses, Stone.Intervals);
 
             //Material quantities

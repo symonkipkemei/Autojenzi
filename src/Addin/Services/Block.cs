@@ -110,9 +110,9 @@ namespace Autojenzi.src.Addin.Services
         public int Intervals { get; set; }
         public double TotalLength { get { return StripLength * Intervals; } }
 
-        internal HoopIronStrip(double WallLength, int courses, int spacing)
+        internal HoopIronStrip(double WallLength, int courses, int courseInterval)
         {
-            Intervals = (courses / spacing);
+            Intervals = (courses / courseInterval); //Truncates the intervals
             StripLength = WallLength;
         }
 
