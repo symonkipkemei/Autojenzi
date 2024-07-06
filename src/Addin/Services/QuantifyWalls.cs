@@ -48,13 +48,23 @@ namespace Autojenzi.src.Addin.Services
 
             Block block = new Block(Stone, verticalJoint, horizontalJoint);
 
-            //Number of Blocks
-            double blocksNo = WallArea / block.BlockArea;
-            MessageBox.Show($"Wall area: {WallArea}, Block area: {block.BlockArea},Block No: {blocksNo} ");
-       
-            // Joint Volume
-            double totalJointVolume = block.BlockJointVolume * blocksNo;
-        
+            //Number of Blocks & Joint volume
+            double blocksFactor = WallArea / block.BlockArea;
+            int blocksNo = (int)Math.Ceiling(blocksFactor);
+            double totalJointVolume ;
+            if (blocksFactor > 0 && blocksFactor < 1)
+            {
+                totalJointVolume = 0.0; //No need of mortar as block is only 1
+                MessageBox.Show("No need for mortar since there's only one block", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else 
+            {
+                // Joint Volume
+                totalJointVolume = block.BlockJointVolume * blocksNo;
+            }
+
+            
+
             //Mortar
             int cementRatio = (int)Math.Floor(Stone.Ratio);
             int sandRatio = (int)((Stone.Ratio - cementRatio)*10);
