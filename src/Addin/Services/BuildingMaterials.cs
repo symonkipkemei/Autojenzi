@@ -60,7 +60,7 @@ namespace Autojenzi.src.Addin.Services
         {
             double noRolls = TotalLength / UnitLength;
             int rolls = (int)Math.Ceiling(noRolls);
-            MessageBox.Show($"Total Length: {TotalLength}, Unit Length: {UnitLength}, Rolls: {noRolls}");
+            
         
             return rolls;
         }

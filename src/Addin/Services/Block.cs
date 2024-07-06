@@ -38,7 +38,7 @@ namespace Autojenzi.src.Addin.Services
             HorizontalJoint.Width = stone.UnitWidth; //can be wall Width/stone width
 
             VerticalJoint.Width = stone.UnitWidth; //can be wall Width/stone width
-            VerticalJoint.Height = stone.UnitHeight + stone.Thickness;
+            VerticalJoint.Height = stone.UnitHeight;
             VerticalJoint.Length = stone.Thickness;
 
         }

@@ -53,26 +53,26 @@ namespace Autojenzi.src.Addin.Services
        
             // Joint Volume
             double totalJointVolume = block.BlockJointVolume * blocksNo;
+            MessageBox.Show($"Joint Volume: {block.BlockJointVolume}, Block No: {blocksNo}");
 
             //Mortar
-            int cementRatio = (int)Math.Floor(Stone.Ratio);
+           int cementRatio = (int)Math.Floor(Stone.Ratio);
             int sandRatio = (int)((Stone.Ratio - cementRatio)*10);
             Mortar mortar = new Mortar(cementRatio, sandRatio){ MortarVolume = totalJointVolume };
             double sandVolume = mortar.SandVolume;
             double cementVolume = mortar.CementVolume;
 
+            MessageBox.Show($"Sand Volume: {sandVolume}, Cement Volume: {cementVolume}, Total Volume: {totalJointVolume}");
+
             // dpc
             DpcStrip dpcStrip = new DpcStrip(WallWidth, WallLength);    
 
-            // no of courses
+            // Hoopiron strip
             int courses = (int)Math.Round (WallHeight/ block.BlockHeight);
-
-            MessageBox.Show($"Courses: {courses}");
-
             HoopIronStrip hoopIronStrip = new HoopIronStrip(WallLength, courses, Stone.Intervals);
 
             //Material quantities
-            Stone.TotalNumber += blocksNo + courses; //The toothblocks will be halfed on both sides depending on the number of courses
+            Stone.TotalNumber += blocksNo; //The toothblocks will be halfed on both sides depending on the number of courses
             Cement.TotalVolume += cementVolume;
             Sand.TotalVolume += sandVolume;
             Dpc.TotalArea += dpcStrip.SectionalArea;
@@ -83,7 +83,7 @@ namespace Autojenzi.src.Addin.Services
         {
             Stone.ProductQuantity = Stone.TotalNumber;
             Cement.ProductQuantity = Cement.CalculateBagsNo();
-            Sand.ProductQuantity = Math.Round(Sand.TotalWeight,2);
+            Sand.ProductQuantity = Math.Round(Sand.TotalWeight,4);
             Dpc.ProductQuantity = Dpc.CalculateSheets();
             HoopIron.ProductQuantity = HoopIron.CalculateRolls();
         }
