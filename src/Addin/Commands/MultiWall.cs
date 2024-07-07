@@ -40,13 +40,13 @@ namespace Autojenzi.src.Addin.Commands
                     IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
                     if (walls.Count == 0)
                     {
-                        TaskDialog.Show("Error", "No walls Selected ");
-                    
+        
+                        MessageBox.Show("No walls Selected", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
                     }
 
                     else
                     {
-
                         try
                         {
                             SumWallQuantities(walls);
@@ -61,8 +61,6 @@ namespace Autojenzi.src.Addin.Commands
                         }
 
                     }
-                    
-
                 }
 
                 else
