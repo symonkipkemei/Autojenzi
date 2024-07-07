@@ -78,6 +78,7 @@ namespace Autojenzi.src.Addin.Services
 
             // Hoopiron strip
             int courses = (int)Math.Round (WallHeight/ block.BlockHeight);
+
             HoopIronStrip hoopIronStrip = new HoopIronStrip(WallLength, courses, Stone.Intervals);
 
             //Material quantities
