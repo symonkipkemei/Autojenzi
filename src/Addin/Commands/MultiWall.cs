@@ -46,9 +46,19 @@ namespace Autojenzi.src.Addin.Commands
 
                     else
                     {
-                        SumWallQuantities(walls);
-                        var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
-                        materialTable.ShowDialog();
+
+                        try
+                        {
+                            SumWallQuantities(walls);
+                            var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
+                            materialTable.ShowDialog();
+
+                        }
+
+                        catch (InvalidOperationException ex)
+                        {
+                            return Result.Cancelled;
+                        }
 
                     }
                     
@@ -88,13 +98,23 @@ namespace Autojenzi.src.Addin.Commands
 
             foreach (Element elem in walls)
             {
-                Wall wall = elem as Wall;
+                if (elem is Wall)
+                {
+                    Wall wall = elem as Wall;
+                    quantifywalls.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
+                    quantifywalls.WallHeight = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).AsDouble());
+                    quantifywalls.WallWidth = UnitsConversion.FootToMetre(Elemental.GetWallThickness(wall));
+                    quantifywalls.WallArea = UnitsConversion.sqfToSqm(wall.get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED).AsDouble());
+                    quantifywalls.WallVolume = UnitsConversion.CubicFootToCubicMeter(wall.get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble());
 
-                quantifywalls.WallLength = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble());
-                quantifywalls.WallHeight = UnitsConversion.FootToMetre(wall.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).AsDouble());
-                quantifywalls.WallWidth = UnitsConversion.FootToMetre(Elemental.GetWallThickness(wall));
-                quantifywalls.WallArea = UnitsConversion.sqfToSqm(wall.get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED).AsDouble());
-                quantifywalls.WallVolume = UnitsConversion.CubicFootToCubicMeter(wall.get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble());
+                }
+
+                else if(elem is FamilyInstance)
+                {
+                    MessageBox.Show("Model in place wall. Parameters not established", "Terminated", MessageBoxButton.OK, MessageBoxImage.Error);
+                    throw new InvalidOperationException("Model in place wall encountered, terminating the script.");
+
+                }
 
                 // Sum quantities /volumes for every wall
                 quantifywalls.AbstractBlockQuantities();
@@ -108,6 +128,7 @@ namespace Autojenzi.src.Addin.Commands
 
 
                 count += 1;
+
 
             }
             quantifywalls.AssignQuantityAttribute();
