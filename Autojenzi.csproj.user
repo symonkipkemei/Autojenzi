@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="src\UI\Greetings.xaml.cs">
+    <Compile Update="src\UI\About.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="src\UI\Materials.xaml.cs">
@@ -13,7 +13,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="src\UI\Greetings.xaml">
+    <Page Update="src\UI\About.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="src\UI\Materials.xaml">

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Autojenzi.src.UI
 {
     /// <summary>
-    /// Interaction logic for Greetings.xaml
+    /// Interaction logic for About.xaml
     /// </summary>
-    public partial class Greetings : Window
+    public partial class About : Window
     {
-        public Greetings()
+        public About()
         {
             InitializeComponent();
         }
