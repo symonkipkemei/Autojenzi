@@ -22,6 +22,15 @@ namespace Autojenzi.src.UI
         public About()
         {
             InitializeComponent();
+
+            //Create a bitmap image
+
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri("pack://application:,,,/Autojenzi;component/src/Addin/Resources/AutojenziProfile.png");
+            bitmapImage.EndInit();
+
+            AutojenziProfile.Source = bitmapImage;
         }
     }
 }
