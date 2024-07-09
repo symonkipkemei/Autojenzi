@@ -30,7 +30,7 @@ namespace Autojenzi.src.Addin
 
 
             //Button data for About command
-            PushButtonData data1 = new PushButtonData("About Autojenzi ", "About", assembly, "Autojenzi.src.Addin.Commands.AboutCommand");
+            PushButtonData data1 = new PushButtonData("About", "About", assembly, "Autojenzi.src.Addin.Commands.AboutCommand");
             PushButton button1 = ribbonPanel.AddItem(data1) as PushButton;
             button1.ToolTip = "Info about this tool";
             Uri uri1 = new Uri("pack://application:,,,/Autojenzi;src/Addin/Resources/snapme.png");

@@ -32,5 +32,10 @@ namespace Autojenzi.src.UI
 
             AutojenziProfile.Source = bitmapImage;
         }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
