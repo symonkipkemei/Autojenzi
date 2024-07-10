@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="src\Addin\Resources\AutojenziIcon.png" />
     <None Remove="src\Addin\Resources\AutojenziProfile.png" />
+    <None Remove="src\Addin\Resources\AutojenziQuantify.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="src\Addin\Resources\AutojenziIcon.png" />
     <Resource Include="src\Addin\Resources\AutojenziProfile.png" />
+    <Resource Include="src\Addin\Resources\AutojenziQuantify.png" />
   </ItemGroup>
 
   <ItemGroup>

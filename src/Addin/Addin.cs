@@ -12,31 +12,33 @@ using System.Windows.Media.Imaging;
 
 namespace Autojenzi.src.Addin
 {
-    public class App : IExternalApplication
+    public class Addin : IExternalApplication
     {
         private void AddRibbonButton(UIControlledApplication application)
         {
             // Ribbon Panel
-            RibbonPanel ribbonPanel = application.CreateRibbonPanel("Wall Selection");
+            RibbonPanel ribbonPanel = application.CreateRibbonPanel("Autojenzi");
             string assembly = Assembly.GetExecutingAssembly().Location;
-
-            //Button data for Mutliwall button
-            PushButtonData data = new PushButtonData("MultiWall", "MultiWall", assembly, "Autojenzi.src.Addin.Commands.MultiWall");
-            PushButton button = ribbonPanel.AddItem(data) as PushButton;
-            button.ToolTip = "Abstract Wall Quantities";
-            Uri uri = new Uri("pack://application:,,,/Autojenzi;src/Addin/Resources/snapme.png");
-            BitmapImage image = new BitmapImage(uri);
-            button.LargeImage = image;
 
 
             //Button data for About command
             PushButtonData data1 = new PushButtonData("About", "About", assembly, "Autojenzi.src.Addin.Commands.AboutCommand");
             PushButton button1 = ribbonPanel.AddItem(data1) as PushButton;
             button1.ToolTip = "Info about this tool";
-            Uri uri1 = new Uri("pack://application:,,,/Autojenzi;src/Addin/Resources/snapme.png");
+            Uri uri1 = new Uri("pack://application:,,,/Autojenzi;component/src/Addin/Resources/AutojenziIcon.png");
             BitmapImage image1 = new BitmapImage(uri1);
-            button.LargeImage = image1;
+            button1.LargeImage = image1;
 
+            //Button data for Quantify Command
+            PushButtonData data = new PushButtonData("Quantify", "Quantify", assembly, "Autojenzi.src.Addin.Commands.QuantifyCommand");
+            PushButton button = ribbonPanel.AddItem(data) as PushButton;
+            button.ToolTip = "Abstract material metrics";
+            Uri uri = new Uri("pack://application:,,,/Autojenzi;component/src/Addin/Resources/AutojenziQuantify.png");
+            BitmapImage image = new BitmapImage(uri);
+            button.LargeImage = image;
+
+
+            
         }
 
         public Result OnShutdown(UIControlledApplication application)

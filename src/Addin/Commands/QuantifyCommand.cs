@@ -13,7 +13,7 @@ namespace Autojenzi.src.Addin.Commands
     // Attributes
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class MultiWall : IExternalCommand
+    public class QuantifyCommand : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {

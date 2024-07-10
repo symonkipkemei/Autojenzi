@@ -3,8 +3,8 @@
 	<AddIn Type="Application">
 		<Name>Autojenzi</Name>
 		<Assembly>".\Autojenzi.dll"</Assembly>
-		<AddInId>5960E441-597B-4A6F-98C8-E9C706A37A44</AddInId>
-		<FullClassName>Autojenzi.Addin</FullClassName>
+		<AddInId>13EA149D-D5FE-4352-B881-64BC120E69AE</AddInId>
+		<FullClassName>Autojenzi.src.Addin.Addin</FullClassName>
 		<VendorId>Symon Kipkemei</VendorId>
 		<VendorDescription> symon@autojenzi.com</VendorDescription>
 		<Description>This tool helps you abstract accurate and real-time material metrics from Revit BIM models</Description>
