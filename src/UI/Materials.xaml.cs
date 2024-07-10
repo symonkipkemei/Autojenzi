@@ -48,6 +48,9 @@ namespace Autojenzi.src.UI
             MaterialItems = storeitems;
             WallProperties = wallProperties;
             UpdateTotalAmount();
+
+            //Subscribing this method to the closing even
+            this.Closed += Materials_Closed;
         }
 
         private void UpdateTotalAmount()
@@ -91,11 +94,22 @@ namespace Autojenzi.src.UI
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            MaterialItems.Clear();
-            WallProperties.Clear();
-
+          
+            ClearCollections();
             this.Close();
         }
+
+        private void Materials_Closed(object sender, EventArgs e)
+        {
+            ClearCollections();
+        }
+
+        private void ClearCollections()
+        {
+            MaterialItems?.Clear();
+            WallProperties?.Clear();
+        }
+
 
 
     }
