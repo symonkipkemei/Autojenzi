@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Autojenzi.src.UI"
         mc:Ignorable="d"
-        Title="Materials" Width="850" Height="Auto" Background="#f2f2f2">
+        Title="Materials" Width="600" Height="Auto" Background="#f2f2f2">
 
     <Grid Margin="10">
         <!-- Define Row Definitions -->
@@ -19,7 +19,7 @@
         <Border Grid.Row="0" Margin="5" Background="#007ACC" CornerRadius="5" Padding="10">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Name="tbTitle" Text="Machine Cut Stone Wall" FontSize="32" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Text="Category: Structure - Wall - Blocks" FontSize="14" FontWeight="Light" Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock Text="Structure -> Wall -> Blocks" FontSize="14" FontWeight="Light" Foreground="White" HorizontalAlignment="Center"/>
             </StackPanel>
         </Border>
 
@@ -42,11 +42,11 @@
                 <Label Content="Material Quantities" FontWeight="Normal" FontSize="16" Margin="0,5,0,5" />
                 <DataGrid ItemsSource="{Binding MaterialItems}" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Height="Auto" Margin="0,5,0,10">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="0.2*" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="0.25*" />
                         <DataGridTextColumn Header="Unit of Product" Binding="{Binding UnitOfProduct}" Width="0.2*" />
-                        <DataGridTextColumn Header="Product Quantities" Binding="{Binding ProductQuantity}" Width="0.2*" />
-                        <DataGridTextColumn Header="Rate" Binding="{Binding Rate}" Width="0.2*" />
-                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="0.2*" />
+                        <DataGridTextColumn Header="Product Quantities" Binding="{Binding ProductQuantity}" Width="0.225*" />
+                        <DataGridTextColumn Header="Rate" Binding="{Binding Rate}" Width="0.15*" />
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="0.175*" />
                     </DataGrid.Columns>
                 </DataGrid>
 
