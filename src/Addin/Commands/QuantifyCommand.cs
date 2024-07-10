@@ -52,7 +52,7 @@ namespace Autojenzi.src.Addin.Commands
                             SumWallQuantities(walls);
                             var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
                             materialTable.ShowDialog();
-
+                            
                         }
 
                         catch (InvalidOperationException ex)

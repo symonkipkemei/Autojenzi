@@ -2,7 +2,7 @@
 <RevitAddIns>
 	<AddIn Type="Application">
 		<Name>Autojenzi</Name>
-		<Assembly>".\Autojenzi.dll"</Assembly>
+		<Assembly>".\Autojenzi\Autojenzi.dll"</Assembly>
 		<AddInId>13EA149D-D5FE-4352-B881-64BC120E69AE</AddInId>
 		<FullClassName>Autojenzi.src.Addin.Addin</FullClassName>
 		<VendorId>Symon Kipkemei</VendorId>

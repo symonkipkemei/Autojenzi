@@ -91,6 +91,9 @@ namespace Autojenzi.src.UI
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+            MaterialItems.Clear();
+            WallProperties.Clear();
+
             this.Close();
         }
 

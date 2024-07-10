@@ -10,6 +10,7 @@
     <None Remove="src\Addin\Resources\AutojenziIcon.png" />
     <None Remove="src\Addin\Resources\AutojenziProfile.png" />
     <None Remove="src\Addin\Resources\AutojenziQuantify.png" />
+    <None Remove="src\Addin\Resources\MaterialData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,10 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="src\Addin\Resources\MaterialData.json" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
