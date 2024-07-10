@@ -58,7 +58,7 @@
             </StackPanel>
 
             <!-- Warning Message -->
-            <Border Margin="5" Background="#FFEB3B" CornerRadius="5" Padding="10">
+            <Border Margin="5" Background="White" CornerRadius="5" Padding="10">
                 <TextBlock x:Name="tbWarning" TextWrapping="Wrap" Text="NB: Kindly note that the rates used are not hardware accurate or real-time. Consult your supplier. Also, note that the applicable currency is in Kenyan Shilling at the moment." FontSize="14" FontWeight="Light" FontStyle="Italic" />
             </Border>
         </StackPanel>
