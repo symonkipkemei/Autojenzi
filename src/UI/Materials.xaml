@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Autojenzi.src.UI"
         mc:Ignorable="d"
-        Title="Materials" Width="600" Height="Auto" Background="#f2f2f2">
+        Title="Element Material Metrics" Width="600" Height="Auto" Background="#f2f2f2"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow">
 
     <Grid Margin="10">
         <!-- Define Row Definitions -->

@@ -59,9 +59,6 @@ namespace Autojenzi.src.UI
                 var properties = new List<KeyValuePair<string, object>>()
                 {
                     new KeyValuePair<string, object>("Category", selectedMaterial.Category),
-                    new KeyValuePair<string, object>("Name", selectedMaterial.Name),
-                    new KeyValuePair<string, object>("Rate(ksh)", selectedMaterial.Rate),
-
                     new KeyValuePair<string, object>("UnitLength (m)", selectedMaterial.UnitLength),
                     new KeyValuePair<string, object>("UnitWidth (m)", selectedMaterial.UnitWidth),
                     new KeyValuePair<string, object>("UnitHeight (m)", selectedMaterial.UnitHeight),
@@ -69,6 +66,7 @@ namespace Autojenzi.src.UI
                     new KeyValuePair<string, object>("Mortar Thickness (m)", selectedMaterial.Thickness),
                     new KeyValuePair<string, object>("Mortar Ratio (sand.cement)", selectedMaterial.Ratio),
                     new KeyValuePair<string, object>("Hoop Iron (course intervals)", selectedMaterial.Intervals),
+                    new KeyValuePair<string, object>("Rate(ksh)", selectedMaterial.Rate),
 
                 };
 
