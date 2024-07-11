@@ -1,8 +1,13 @@
-﻿using Autojenzi.src.Addin.Services;
+﻿using Autodesk.Revit.DB;
+using Autojenzi.src.Addin;
+using Autojenzi.src.Addin.Services;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Windows.Resources;
 
 public class MaterialJson
 {
@@ -39,12 +44,28 @@ public class MaterialList
 public static class MaterialLoader
 {
     // Reads JSON file into a string variable(json) then the string variable is deserialized into a list of MaterialData object
-    public static MaterialList LoadMaterials(string filepath)
+    public static MaterialList LoadMaterials(string json)
     {
-        string json = File.ReadAllText(filepath);
         MaterialList materials = JsonConvert.DeserializeObject<MaterialList>(json);
         return materials;
     }
+    public static string LoadJsonContent(string resourcePath)
+    {
+        StreamResourceInfo resourceInfo = System.Windows.Application.GetResourceStream(new Uri(resourcePath));
+        if (resourceInfo != null)
+        {
+            using (var reader = new StreamReader(resourceInfo.Stream))
+            {
+                return reader.ReadToEnd();
+            }
+
+        }
+        else
+        {
+            throw new FileNotFoundException("Resource Not Found" + resourcePath);
+        }
+    }
+
 
     // Converts material JSON objects into a specific material object based on the class type
     public static BuildingMaterial CreateMaterial(MaterialJson materialJson)
@@ -73,9 +94,10 @@ public static class MaterialLoader
 
     public static BuildingMaterial FindBuildingMaterial(string id)
     {
-        string filePath = "F:\\BIMHABITAT\\SOFTWARES\\Autojenzi\\src\\Addin\\Resources\\MaterialData.json";
+        string resourcePath = Store.ResourcePath;
+        var jsonContent = LoadJsonContent(resourcePath);
         // List of material JSON objects
-        var materialData = LoadMaterials(filePath);
+        var materialData = LoadMaterials(jsonContent);
 
         // Convert to list of building materials
         List<BuildingMaterial> buildingMaterials = materialData.Materials.Select(m => CreateMaterial(m)).ToList();

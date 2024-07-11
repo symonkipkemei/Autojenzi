@@ -19,6 +19,7 @@ namespace Autojenzi.src.Addin.Commands
         {
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
             Document doc = uidoc.Document;
+            Store.ResourcePath = "pack://application:,,,/Autojenzi;component/src/Addin/Resources/MaterialData.json";
 
             try
             {
@@ -55,7 +56,7 @@ namespace Autojenzi.src.Addin.Commands
                             
                         }
 
-                        catch (InvalidOperationException ex)
+                        catch (InvalidOperationException)
                         {
                             return Result.Cancelled;
                         }

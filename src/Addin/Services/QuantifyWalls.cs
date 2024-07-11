@@ -124,8 +124,8 @@ namespace Autojenzi.src.Addin.Services
             Store.PropertiesList.Add(new WallProperties("Running Length", "Meters (total)", Math.Round(runningLength, 2)));
             Store.PropertiesList.Add(new WallProperties("Area", "Square Meters (total)", Math.Round(area, 2)));
             Store.PropertiesList.Add(new WallProperties("Volume", "Cubic Meters (total)", Math.Round(volume, 2)));
-            Store.PropertiesList.Add(new WallProperties("Motar Thickness", "Millimeters", UnitsConversion.MtoMm(mortarThickness)));
-            Store.PropertiesList.Add(new WallProperties("Motar Ratio", "cement.sand ratio", mortarRatio));
+            Store.PropertiesList.Add(new WallProperties("Mortar Thickness", "Millimeters", UnitsConversion.MtoMm(mortarThickness)));
+            Store.PropertiesList.Add(new WallProperties("Mortar Ratio", "cement.sand ratio", mortarRatio));
         }
     }
 }

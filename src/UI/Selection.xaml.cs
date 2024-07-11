@@ -2,8 +2,10 @@
 using Autodesk.Revit.UI;
 using Autojenzi.src.Addin;
 using Autojenzi.src.Addin.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace Autojenzi.src.UI
@@ -39,9 +42,10 @@ namespace Autojenzi.src.UI
 
         private void LoadMaterials()
         {
-            string filePath = "F:\\BIMHABITAT\\SOFTWARES\\Autojenzi\\src\\Addin\\Resources\\MaterialData.json";
-            Materials = MaterialLoader.LoadMaterials(filePath).Materials.Where(m => m.Category == "Block").ToList();
-
+            string resourcePath = Store.ResourcePath;
+            string jsonContent = MaterialLoader.LoadJsonContent(resourcePath);
+            Materials = MaterialLoader.LoadMaterials(jsonContent).Materials.Where(m => m.Category == "Block").ToList();
+             
         }
 
         private void PopulateComboBox()

@@ -19,6 +19,8 @@ namespace Autojenzi.src.Addin
         // This is the selected material by the user// add property such that if its null the program does not crash
         public static string BlockName {  get; set; }
         public static string BlockID { get; set; }
+
+        public static string ResourcePath { get; set; }
     }
 
 
