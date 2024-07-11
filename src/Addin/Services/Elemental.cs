@@ -172,6 +172,38 @@ namespace Autojenzi.src.Addin.Services
             return totalThickness;
 
         }
+
+        public static void OverideSelectedWallsColor( Document doc, IList<Element> walls)
+        {
+            Color blueColor = new Color(0, 122, 124);
+            ElementId fillPatternId = new ElementId(20);
+
+            OverrideGraphicSettings overrideGraphicSettings = new OverrideGraphicSettings();
+            overrideGraphicSettings.SetSurfaceForegroundPatternColor(blueColor);
+            overrideGraphicSettings.SetSurfaceForegroundPatternId(fillPatternId);
+
+            using (Transaction tx = new Transaction(doc, "Showcase selected walls"))
+            {
+                tx.Start();
+
+                foreach (Element wall in walls)
+                {
+                    //Apply overides to each wall
+                    doc.ActiveView.SetElementOverrides(wall.Id, overrideGraphicSettings);
+
+                    //set comments parameter to selected
+                    Parameter commentsParam = wall.LookupParameter("Comments");
+                    if (commentsParam != null && !commentsParam.IsReadOnly )
+                    {
+                        commentsParam.Set("Selected");
+                    }
+                }
+
+                tx.Commit();
+
+            }
+
+        }
     }
 
 

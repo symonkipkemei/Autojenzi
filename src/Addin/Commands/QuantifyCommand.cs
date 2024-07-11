@@ -39,6 +39,7 @@ namespace Autojenzi.src.Addin.Commands
                     // Ensure the user has selected walls before proceeding
 
                     IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
+                    
                     if (walls.Count == 0)
                     {
         
@@ -53,7 +54,9 @@ namespace Autojenzi.src.Addin.Commands
                             SumWallQuantities(walls);
                             var materialTable = new Materials(Store.AbstractedMaterials, Store.PropertiesList, Store.BlockName + " Wall");
                             materialTable.ShowDialog();
-                            
+                            Elemental.OverideSelectedWallsColor(doc, walls);
+
+
                         }
 
                         catch (InvalidOperationException)
