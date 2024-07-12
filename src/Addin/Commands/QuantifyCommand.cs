@@ -37,7 +37,7 @@ namespace Autojenzi.src.Addin.Commands
                 if (selection.IsOk)
                 {
                     // Ensure the user has selected walls before proceeding
-
+                    Elemental.RemoveOveridesOnSelectedWalls(doc);
                     IList<Element> walls = Elemental.SelectMultipleWalls(uidoc, doc);
                     
                     if (walls.Count == 0)

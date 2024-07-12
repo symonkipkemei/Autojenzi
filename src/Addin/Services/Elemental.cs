@@ -175,7 +175,7 @@ namespace Autojenzi.src.Addin.Services
 
         public static void OverideSelectedWallsColor( Document doc, IList<Element> walls)
         {
-            Color blueColor = new Color(0, 122, 124);
+            Color blueColor = new Color(0, 123, 204);
             ElementId fillPatternId = new ElementId(20);
 
             OverrideGraphicSettings overrideGraphicSettings = new OverrideGraphicSettings();
@@ -203,6 +203,33 @@ namespace Autojenzi.src.Addin.Services
 
             }
 
+        }
+
+        public static void RemoveOveridesOnSelectedWalls( Document doc)
+        {
+
+            // select walls in revit with comments "Selected"
+            FilteredElementCollector collector = new FilteredElementCollector(doc).OfClass(typeof(Wall)).WhereElementIsNotElementType();
+            var selectedWalls = from wall in collector
+                                let commentsParam = wall.LookupParameter("Comments")
+                                where commentsParam != null && commentsParam.AsString() == "Selected"
+                                select wall;
+
+            //Remove overides
+            OverrideGraphicSettings defaultOverideSettings = new OverrideGraphicSettings();
+
+            //Start transaction
+            using (Transaction tx = new Transaction(doc, " Remove selected walls overides"))
+            {
+                tx.Start();
+
+                foreach(Element wall in selectedWalls)
+                {
+                    doc.ActiveView.SetElementOverrides(wall.Id, defaultOverideSettings);
+                }
+
+                tx.Commit();
+            }
         }
     }
 
