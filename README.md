@@ -13,14 +13,14 @@
 alt="follow on Twitter"></a>
 
 
-![quote](src/Addin/Resources/Sample.jpg)
+![Sample](src/Addin/Resources/Sample.jpg)
 
 ***Building Material Metrics in Real time!***
 
  
 ## 📋 Summary
 
-![summary](summary.png)
+![Ribbon](src/Addin/Resources/Ribbon.png)
 
 There are many factors that influence the design outcome of your construction project 👷‍♂️ .
 Building Material data may not be one them despite contributing up to 70% of the total 
@@ -32,44 +32,42 @@ Not any more! Autojenzi has a solution for you. In real-time ⏳ , you can now a
 building materials data as you design.
 
 Hypothetically, The enclosing building elements such as floor, roof and walls in BIM Models
-are devoid of Material context when designing using BIM tools. As a result the decision of 
-which materials to be used are inferred late in the project and thus little impact during 
-the design phase.
+are devoid of Material context when designing using BIM tools. As a result, the decision of 
+which building materials to be used are inferred late in the project and thus little impact 
+during the design phase.
 
 Autojenzi simplifies the process into three steps:
 1. Select your building technology 
 2. Apply the building technology to selected elements
-3. Abstract the materials 
+3. Abstract building materials and element quantities
 
 Starting off with walls -you can now apply a building technology of your preference and break it down 
 into subsequent materials in real-time. 
 
-This way, new possibilities emerge:
-1. You can abstract both element and material quantities in real time
-2. You can comperatively compare between different building technologies 
-3. You can simulate cost comparisons between various technologies in real time.
-
 
 ## 📦 Some feature include:
 
-- Reduce the repetitive process of:
-    -  Adjusting export image settings, you only set them once!
-    - Choosing image folder directory, you only choose once!
-    - Naming images, SnapMe names them for you chronologically!
-- Overlay different elements/files/styles without changing the export view.
-- Snap high quality images in real time!
+- Abstract both element and material quantities in real time
+- Comperatively compare between different building technologies
+- Simulate cost comparisons between various technologies in real time.
+- Export element and material quantities into pdf
+- Integrate	quantities export wit excel.
 
 
 ## 📦 Future updates will include:
 
- -  Add all Image settings on the settings command button.
- -  Accommodate predetermined Graphic Styles on 2D & 3D 
- -  Create white clay render styles on 3D views using OpenAi Stable diffusion
+ -  Extend the functionality to other building elements: roofs,slab, columns and beams
+ -  Integrate with a web app for more information on building technologies
+ -  Enrich the building technology database
 
 
  ## ⌨️ Usage Guide
 
-Below is a video illustration on how the tool works. Enjoy!
+Below is a illustration on how the tool works. Enjoy!
+![Ribbon](src/Addin/Resources/About.png)
+![Ribbon](src/Addin/Resources/InactiveSelection.png)
+![Ribbon](src/Addin/Resources/ActiveSelection.png)
+![Ribbon](src/Addin/Resources/Materials.png)
 
 [![Watch my YouTube Video](https://img.youtube.com/vi/dZoG7zUt-_c/maxresdefault.jpg)](https://www.youtube.com/watch?v=dZoG7zUt-_c)
 
