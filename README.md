@@ -65,11 +65,14 @@ into subsequent materials in real-time.
 
 Below is a illustration on how the tool works. Enjoy!
 ![About](src/Addin/Resources/About.png)
+
 ![InactiveSelection](src/Addin/Resources/InactiveSelection.png)
+
 ![ActiveSelection](src/Addin/Resources/ActiveSelection.png)
+
 ![Materials](src/Addin/Resources/Materials.png)
 
-[![Watch my YouTube Video](https://img.youtube.com/vi/dZoG7zUt-_c/maxresdefault.jpg)](https://www.youtube.com/watch?v=dZoG7zUt-_c)
+
 
 
 
