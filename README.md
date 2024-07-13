@@ -20,60 +20,53 @@ alt="follow on Twitter"></a>
  
 ## 📋 Summary
 
-![Ribbon](src/Addin/Resources/Ribbon.PNG)
+![Ribbon](src/Addin/Resources/Ribbon.png)
 
-There are many factors that influence the design outcome of your construction project 👷‍♂️ .
-Building Material data may not be one them despite contributing up to 70% of the total 
-construction cost.
+There are many factors that influence the design outcome of your construction project 👷‍♂️. Building material data may not be one of them, despite contributing up to 70% of the total construction cost.
 
-Is material data an afterthought when you are designing 🤔 ?
+Is material data an afterthought when you are designing 🤔?
 
-Not any more! Autojenzi has a solution for you. In real-time ⏳ , you can now access your 
-building materials data as you design.
+Not anymore! Autojenzi has a solution for you. In real-time ⏳, you can now access your building materials data as you design.
 
-Hypothetically, The enclosing building elements such as floor, roof and walls in BIM Models
-are devoid of Material context when designing using BIM tools. As a result, the decision of 
-which building materials to be used are inferred late in the project and thus little impact 
-during the design phase.
+Hypothetically, the enclosing building elements such as floors, roofs, and walls in BIM models are devoid of material context when designing using BIM tools. As a result, the decision of which building materials to use is inferred late in the project, having little impact during the design phase.
 
 Autojenzi simplifies the process into three steps:
-1. Select your building technology 
-2. Apply the building technology to selected elements
-3. Abstract building materials and element quantities
 
-Starting off with walls -you can now apply a building technology of your preference and break it down 
-into subsequent materials in real-time. 
+1. Select your building technology.
+2. Apply the building technology to selected elements.
+3. Abstract building materials and element quantities.
+
+
+Starting off with walls, you can now apply a building technology of your preference and break it down into subsequent materials in real-time.
 
 
 ## 📦 Some feature include:
 
-- Abstract both element and material quantities in real time
-- Comperatively compare between different building technologies
-- Simulate cost comparisons between various technologies in real time.
-- Export element and material quantities into pdf
-- Integrate	quantities export wit excel.
+- Abstract both element and material quantities in real-time.
+- Auto filter wall elements into a new 3D view for ease of selection.
+- Comparatively compare different building technologies.
+- Simulate cost comparisons between various technologies in real-time.
+- Export element and material quantities into PDF.
+- Integrate quantities export with Excel.
 
 
 ## 📦 Future updates will include:
 
- -  Extend the functionality to other building elements: roofs,slab, columns and beams
- -  Integrate with a web app for more information on building technologies
- -  Enrich the building technology database
+- Extend the functionality to other building elements: roofs, slabs, columns, and beams.
+- Integrate with a web app for more information on building technologies.
+- Enrich the building technology database.
+- Allow the user to modify and include their own building technology parameters
 
 
  ## ⌨️ Usage Guide
 
 Below is a illustration on how the tool works. Enjoy!
 
-![About](src/Addin/Resources/About.PNG)
-
-![InactiveSelection](src/Addin/Resources/InactiveSelection.PNG)
-
-![ActiveSelection](src/Addin/Resources/ActiveSelection.PNG)
-
-![Materials](src/Addin/Resources/Materials.PNG)
-
-
+![partO](src/Addin/Resources/part0.png)
+![partA](src/Addin/Resources/partA.png)
+![partB](src/Addin/Resources/partB.png)
+![partC](src/Addin/Resources/partC.png)
+![partD](src/Addin/Resources/partD.png)
 
 
 
