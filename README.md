@@ -20,7 +20,7 @@ alt="follow on Twitter"></a>
  
 ## 📋 Summary
 
-![Ribbon](src/Addin/Resources/Ribbon.png)
+![Ribbon](src/Addin/Resources/Ribbon.PNG)
 
 There are many factors that influence the design outcome of your construction project 👷‍♂️ .
 Building Material data may not be one them despite contributing up to 70% of the total 
@@ -67,11 +67,11 @@ Below is a illustration on how the tool works. Enjoy!
 
 ![About](src/Addin/Resources/About.PNG)
 
-![InactiveSelection](src/Addin/Resources/InactiveSelection.png)
+![InactiveSelection](src/Addin/Resources/InactiveSelection.PNG)
 
-![ActiveSelection](src/Addin/Resources/ActiveSelection.png)
+![ActiveSelection](src/Addin/Resources/ActiveSelection.PNG)
 
-![Materials](src/Addin/Resources/Materials.png)
+![Materials](src/Addin/Resources/Materials.PNG)
 
 
 
