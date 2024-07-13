@@ -64,10 +64,10 @@ into subsequent materials in real-time.
  ## ⌨️ Usage Guide
 
 Below is a illustration on how the tool works. Enjoy!
-![Ribbon](src/Addin/Resources/About.png)
-![Ribbon](src/Addin/Resources/InactiveSelection.png)
-![Ribbon](src/Addin/Resources/ActiveSelection.png)
-![Ribbon](src/Addin/Resources/Materials.png)
+![About](src/Addin/Resources/About.png)
+![InactiveSelection](src/Addin/Resources/InactiveSelection.png)
+![ActiveSelection](src/Addin/Resources/ActiveSelection.png)
+![Materials](src/Addin/Resources/Materials.png)
 
 [![Watch my YouTube Video](https://img.youtube.com/vi/dZoG7zUt-_c/maxresdefault.jpg)](https://www.youtube.com/watch?v=dZoG7zUt-_c)
 
@@ -91,7 +91,7 @@ Credit to [icons8.com](https://icons8.com) for the SnapMe icons.
 
 ## 🍚 Contribute
 
-**Autojenzi** is an open-source project. You can make suggestions or track and submit bugs via Github [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue). You can submit your own code to the **SnapMe** project via a Github [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
+**Autojenzi** is an open-source project. You can make suggestions or track and submit bugs via Github [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue). You can submit your own code to the **Autojenzi** project via a Github [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
 Feel free to contribute!
 Please refer to the [CONTRIBUTING](CONTRIBUTING.md) for details.
