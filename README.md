@@ -61,6 +61,11 @@ Starting off with walls, you can now apply a building technology of your prefere
  ## ⌨️ Usage Guide
 
 Below is a illustration on how the tool works. Enjoy!
+1. Navigate to the Add-ins tab and click on "Autojenzi".
+3. Follow the on-screen prompt and select a building technology
+4. Apply the building technology to selected wall elements
+5. Abstract building materials
+6. Export the extracted data to Excel or PDF for further analysis.
 
 ![partO](src/Addin/Resources/part0.png)
 ![partA](src/Addin/Resources/partA.png)
@@ -71,7 +76,11 @@ Below is a illustration on how the tool works. Enjoy!
 
 
 ## ⚙️ Installation
-Please follow last release at section [Release](https://github.com/symonkipkemei/Autojenzi/releases)
+
+1. Please follow last release at section [Release](https://github.com/symonkipkemei/Autojenzi/releases)
+2. Download the installer (`AutojenziInstaller.exe`).
+3. Run the installer (`AutojenziInstaller.exe`) and follow the installation instructions.
+4. Open Revit and access the plugin from the Add-ins tab
 
 
 ### Version support : From Revit 2020 to Revit 2025.
