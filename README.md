@@ -64,7 +64,8 @@ into subsequent materials in real-time.
  ## ⌨️ Usage Guide
 
 Below is a illustration on how the tool works. Enjoy!
-![About](src/Addin/Resources/About.png)
+
+![About](src/Addin/Resources/About.PNG)
 
 ![InactiveSelection](src/Addin/Resources/InactiveSelection.png)
 
