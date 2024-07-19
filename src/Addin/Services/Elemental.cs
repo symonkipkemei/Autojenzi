@@ -176,33 +176,62 @@ namespace Autojenzi.src.Addin.Services
         public static void OverideSelectedWallsColor( Document doc, IList<Element> walls)
         {
             Color blueColor = new Color(0, 123, 204);
-            ElementId fillPatternId = new ElementId(20);
 
+            ElementId fillPatternId = GetSolidFillPatternId(doc);
+
+            if (fillPatternId == null)
+            {
+                MessageBox.Show("Solid fill pattern not found in the document.");
+                return;
+            }
+
+       
             OverrideGraphicSettings overrideGraphicSettings = new OverrideGraphicSettings();
             overrideGraphicSettings.SetSurfaceForegroundPatternColor(blueColor);
             overrideGraphicSettings.SetSurfaceForegroundPatternId(fillPatternId);
 
             using (Transaction tx = new Transaction(doc, "Showcase selected walls"))
             {
-                tx.Start();
-
-                foreach (Element wall in walls)
+                try
                 {
-                    //Apply overides to each wall
-                    doc.ActiveView.SetElementOverrides(wall.Id, overrideGraphicSettings);
+                    tx.Start();
 
-                    //set comments parameter to selected
-                    Parameter commentsParam = wall.LookupParameter("Comments");
-                    if (commentsParam != null && !commentsParam.IsReadOnly )
+                    foreach (Element wall in walls)
                     {
-                        commentsParam.Set("Selected");
+                        //Apply overides to each wall
+                        doc.ActiveView.SetElementOverrides(wall.Id, overrideGraphicSettings);
+
+                        //set comments parameter to selected
+                        Parameter commentsParam = wall.LookupParameter("Comments");
+                        if (commentsParam != null && !commentsParam.IsReadOnly)
+                        {
+                            commentsParam.Set("Selected");
+                        }
                     }
+
+                    tx.Commit();
                 }
 
-                tx.Commit();
+                catch (Exception ex) 
+                {
+                    string message = ex.Message;
+                    string stackTrace = ex.StackTrace;
+
+                    MessageBox.Show($"Error:{message} StackTrace {stackTrace}");
+                }
 
             }
 
+        }
+
+        public static ElementId GetSolidFillPatternId(Document doc)
+        {
+            //Find a fill pattern Id called solid fill
+          FillPatternElement solidFillPattern = new FilteredElementCollector(doc).OfClass(typeof(FillPatternElement))
+                .Cast<FillPatternElement>().FirstOrDefault(fp => fp.GetFillPattern().IsSolidFill);
+
+            return solidFillPattern?.Id;
+    
         }
 
         public static void RemoveOveridesOnSelectedWalls( Document doc)
