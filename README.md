@@ -90,7 +90,7 @@ Below is a illustration on how the tool works. Enjoy!
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [License](License.md) file for full details.
 
-Credit to [icons8.com](https://icons8.com) for the SnapMe icons.
+Credit to [icons8.com](https://icons8.com) for the Autojenzi icons.
 
 © 2024 Autodesk, Inc.  All rights reserved. All use of this Software is subject to the terms and conditions of the Autodesk End User License Agreement accepted upon installation of this Software and/or packaged with the Software.
 
