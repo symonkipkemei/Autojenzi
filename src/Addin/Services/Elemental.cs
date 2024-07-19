@@ -68,7 +68,8 @@ namespace Autojenzi.src.Addin.Services
                         autojenziView.Name = "Autojenzi";
                     }
 
-                    TaskDialog.Show("Revit", "Autojenzi 3D view created. Use this active view to quantify your walls");
+                    MessageBox.Show("Autojenzi 3D view created. Only walls are visible. Use this view to quantify your walls.", "3D view created", MessageBoxButton.OK, MessageBoxImage.Information);
+                   
                 }
 
                 trans.Commit();
