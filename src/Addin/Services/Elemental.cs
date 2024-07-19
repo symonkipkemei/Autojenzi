@@ -22,13 +22,35 @@ namespace Autojenzi.src.Addin.Services
         public static IList<Element> SelectMultipleWalls(UIDocument uidoc, Document doc)
         {
             IList<Element> walls = new List<Element>();
-            IList<Reference> references = uidoc.Selection.PickObjects(ObjectType.Element, new WallSelectionFilter());
-            foreach (Reference reference in references)
+            try
             {
-                Element wall = doc.GetElement(reference);
-                walls.Add(wall);
+                IList<Reference> references = uidoc.Selection.PickObjects(ObjectType.Element, new WallSelectionFilter());
+
+                if (references == null || references.Count == 0) 
+                {
+                    MessageBox.Show("No walls were selected. Please select at least one wall.", "Selection Empty", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    foreach (Reference reference in references)
+                    {
+                        Element wall = doc.GetElement(reference);
+                        walls.Add(wall);
+                    }
+
+                }
+
             }
-            
+            catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+            {
+                MessageBox.Show("Wall selection was canceled by the user.", "Selection Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"An error occurred during wall selection: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
             return walls;
         }
 
@@ -72,7 +94,7 @@ namespace Autojenzi.src.Addin.Services
                         if (autojenziView != null)
                         {
                             uidoc.ActiveView = autojenziView;
-                            MessageBox.Show("Autojenzi 3D view created.Use this view to quantify your walls.", "3D view created", MessageBoxButton.OK, MessageBoxImage.Information);                           
+                            //MessageBox.Show("Autojenzi 3D view created.Use this view to quantify your walls.", "3D view created", MessageBoxButton.OK, MessageBoxImage.Information);                           
                         }
                     }
                 }

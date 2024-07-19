@@ -42,8 +42,8 @@ namespace Autojenzi.src.Addin.Commands
                     
                     if (walls.Count == 0)
                     {
-        
-                        MessageBox.Show("No walls Selected", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                        return Result.Cancelled;
 
                     }
 
