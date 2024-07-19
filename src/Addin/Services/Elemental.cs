@@ -42,9 +42,7 @@ namespace Autojenzi.src.Addin.Services
 
         public static View3D Create3DView(UIDocument uidoc, Document doc) 
         {
-
             View3D autojenziView = null;
-
             try
             {
                 // check if the view already exists
@@ -53,14 +51,11 @@ namespace Autojenzi.src.Addin.Services
                         .Cast<View3D>()
                         .FirstOrDefault(v => v.Name.Equals("Autojenzi"));
 
-
                 if (autojenziView == null)
-
                 {
                     using (Transaction trans = new Transaction(doc, "Create autojenzi 3D view"))
                     {
-                        trans.Start();
-                        
+                        trans.Start();               
                         // Get the 3D view type in the docs
                         ViewFamilyType viewFamilyType = new FilteredElementCollector(doc)
                                 .OfClass(typeof(ViewFamilyType))
@@ -72,16 +67,12 @@ namespace Autojenzi.src.Addin.Services
                                 //Create the 3D view
                                 autojenziView = View3D.CreateIsometric(doc, viewFamilyType.Id);
                                 autojenziView.Name = "Autojenzi";
-                            }
-
-                      
+                            }                   
                         trans.Commit();
-
-
                         if (autojenziView != null)
                         {
-                            MessageBox.Show("Autojenzi 3D view created. Only walls are visible. Use this view to quantify your walls.", "3D view created", MessageBoxButton.OK, MessageBoxImage.Information);
                             uidoc.ActiveView = autojenziView;
+                            MessageBox.Show("Autojenzi 3D view created.Use this view to quantify your walls.", "3D view created", MessageBoxButton.OK, MessageBoxImage.Information);                           
                         }
                     }
                 }
@@ -89,19 +80,12 @@ namespace Autojenzi.src.Addin.Services
                 {
                     uidoc.ActiveView = autojenziView;
                 }
-
-                
-
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while creating the 3D view: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
             return autojenziView;
-
         }
 
         public static void HideLevels(Document doc, View3D autojenzi)
