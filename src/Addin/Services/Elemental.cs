@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Media.Media3D;
 using Autodesk.Revit.UI.Selection;
 
+
 namespace Autojenzi.src.Addin.Services
 {
     public static class Elemental
@@ -42,55 +43,64 @@ namespace Autojenzi.src.Addin.Services
         public static View3D Create3DView(UIDocument uidoc, Document doc) 
         {
 
-            using (Transaction trans = new Transaction(doc, "Create autojenzi 3D view"))
-            { 
-                trans.Start();
+            View3D autojenziView = null;
 
+            try
+            {
                 // check if the view already exists
+                autojenziView = new FilteredElementCollector(doc)
+                        .OfClass(typeof(View3D))
+                        .Cast<View3D>()
+                        .FirstOrDefault(v => v.Name.Equals("Autojenzi"));
 
-                View3D autojenziView = new FilteredElementCollector(doc)
-                    .OfClass(typeof(View3D))
-                    .Cast<View3D>()
-                    .FirstOrDefault(v=> v.Name.Equals("Autojenzi"));
 
                 if (autojenziView == null)
+
                 {
-                    // Get the 3D view type in the docs
-                    ViewFamilyType viewFamilyType = new FilteredElementCollector(doc)
-                        .OfClass(typeof(ViewFamilyType))
-                        .Cast<ViewFamilyType>()
-                        .FirstOrDefault( x => x.ViewFamily == ViewFamily.ThreeDimensional);
-
-                    if (viewFamilyType != null)
+                    using (Transaction trans = new Transaction(doc, "Create autojenzi 3D view"))
                     {
-                        //Create the 3D view
-                        autojenziView = View3D.CreateIsometric(doc, viewFamilyType.Id);
-                        autojenziView.Name = "Autojenzi";
-                    }
+                        trans.Start();
+                        
+                        // Get the 3D view type in the docs
+                        ViewFamilyType viewFamilyType = new FilteredElementCollector(doc)
+                                .OfClass(typeof(ViewFamilyType))
+                                .Cast<ViewFamilyType>()
+                                .FirstOrDefault(x => x.ViewFamily == ViewFamily.ThreeDimensional);
 
-                    MessageBox.Show("Autojenzi 3D view created. Only walls are visible. Use this view to quantify your walls.", "3D view created", MessageBoxButton.OK, MessageBoxImage.Information);
-                   
+                        if (viewFamilyType != null)
+                            {
+                                //Create the 3D view
+                                autojenziView = View3D.CreateIsometric(doc, viewFamilyType.Id);
+                                autojenziView.Name = "Autojenzi";
+                            }
+
+                      
+                        trans.Commit();
+
+
+                        if (autojenziView != null)
+                        {
+                            MessageBox.Show("Autojenzi 3D view created. Only walls are visible. Use this view to quantify your walls.", "3D view created", MessageBoxButton.OK, MessageBoxImage.Information);
+                            uidoc.ActiveView = autojenziView;
+                        }
+                    }
+                }
+                else
+                {
+                    uidoc.ActiveView = autojenziView;
                 }
 
-                trans.Commit();
-            
-            }
-
-            //Set created view as active
-
-            var newView = new FilteredElementCollector(doc)
-                .OfClass(typeof(View3D))
-                .Cast<View3D>()
-                .FirstOrDefault(v => v.Name.Equals("Autojenzi"));
-
-            if (newView != null)
-            {
-                uidoc.ActiveView = newView;
                 
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while creating the 3D view: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-
-            return newView;
+            return autojenziView;
 
         }
 
