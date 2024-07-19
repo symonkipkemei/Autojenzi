@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Autojenzi"
-#define MyAppVersion "v.1.0.0"
+#define MyAppVersion "v.1.0.1"
 #define MyAppPublisher "Symon Kipkemei"
 #define MyAppURL "https://www.autojenzi.com/"
 
