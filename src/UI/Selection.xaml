@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Building Technology Selection" Height="400" Width="350" Background="#f2f2f2"
         ResizeMode="NoResize"
-        WindowStyle="SingleBorderWindow">
+        WindowStyle="SingleBorderWindow" WindowStartupLocation= "CenterScreen">
 
 
 
@@ -56,4 +56,4 @@
     </Grid>
 </Window>
 
-    
+ 

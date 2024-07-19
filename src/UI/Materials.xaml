@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Element Material Metrics" Width="600" Height="700" Background="#f2f2f2"
         ResizeMode="NoResize"
-        WindowStyle="SingleBorderWindow">
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation= "CenterScreen" >
 
     <Grid Margin="10">
         <!-- Define Row Definitions -->
