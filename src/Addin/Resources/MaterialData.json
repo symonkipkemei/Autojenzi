@@ -67,8 +67,8 @@
     },
     {
       "Category": "Block",
-      "ID": "InterlockingEarthBlocks(ICEB)",
-      "Name": "Interlocking Earth Blocks (ICEB)",
+      "ID": "InterlockingEarthBlocks",
+      "Name": "Interlocking Earth Blocks",
       "Rate": 50,
       "Unit": "Pieces",
       "Density": 1520,
