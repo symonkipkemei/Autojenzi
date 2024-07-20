@@ -4,17 +4,17 @@
       "Category": "Block",
       "ID": "MachineCutStone",
       "Name": "Machine Cut Stone",
-      "Rate": 30,
+      "Rate": 45,
       "Unit": "Pieces",
       "Density": null,
       "UnitVolume": null,
       "UnitWeight": null,
-      "UnitLength": 0.4,
-      "UnitWidth": 0.2,
-      "UnitHeight": 0.2,
-      "Thickness": 0.03,
+      "UnitLength": 0.38,
+      "UnitWidth": 0.23,
+      "UnitHeight": 0.23,
+      "Thickness": 0.02,
       "Ratio": 1.4,
-      "Intervals": 3
+      "Intervals": 2
 
     },
     {
@@ -26,12 +26,12 @@
       "Density": 1920,
       "UnitVolume": null,
       "UnitWeight": null,
-      "UnitLength": 0.230,
-      "UnitWidth": 0.150,
-      "UnitHeight": 0.070,
-      "Thickness": 0.010,
+      "UnitLength": 0.19,
+      "UnitWidth": 0.09,
+      "UnitHeight": 0.09,
+      "Thickness": 0.012,
       "Ratio": 1.3,
-      "Intervals": 4
+      "Intervals": 0
     },
     {
       "Category": "Block",
@@ -67,16 +67,16 @@
     },
     {
       "Category": "Block",
-      "ID": "MakigaSoilBlock",
-      "Name": "Makiga Soil Block",
-      "Rate": 20,
+      "ID": "InterlockingEarthBlocks(ICEB)",
+      "Name": "Interlocking Earth Blocks (ICEB)",
+      "Rate": 50,
       "Unit": "Pieces",
       "Density": 1520,
       "UnitVolume": null,
       "UnitWeight": null,
-      "UnitLength": 0.254,
-      "UnitWidth": 0.152,
-      "UnitHeight": 0.101,
+      "UnitLength": 0.25,
+      "UnitWidth": 0.15,
+      "UnitHeight": 0.10,
       "Thickness": 0,
       "Ratio": 1.3,
       "Intervals": 0
@@ -91,11 +91,11 @@
       "UnitVolume": null,
       "UnitWeight": null,
       "UnitLength": 0.4,
-      "UnitWidth": 0.2,
-      "UnitHeight": 0.2,
-      "Thickness": 0.03,
+      "UnitWidth": 0.15,
+      "UnitHeight": 0.1,
+      "Thickness": 0.02,
       "Ratio": 1.3,
-      "Intervals": 2
+      "Intervals": 0
     },
     {
       "Category": "Block",
@@ -109,9 +109,9 @@
       "UnitLength": 0.4,
       "UnitWidth": 0.150,
       "UnitHeight": 0.1,
-      "Thickness": 0.03,
+      "Thickness": 0.02,
       "Ratio": 1.3,
-      "Intervals": 2
+      "Intervals": 0
     },
     {
       "Category": "Cement",
